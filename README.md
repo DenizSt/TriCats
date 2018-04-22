@@ -1,6 +1,6 @@
 # Trivalent
 
-A framework and set of tools to perform calculations with trivalent diagrams in *Mathematica*.
+A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
 
 *Written by* Deniz Stiegemann.
 
@@ -10,7 +10,7 @@ A framework and set of tools to perform calculations with trivalent diagrams in 
 * [**Background**](#background)
 * [**Documentation**](#documentation)
 	* [Reduction of Trivalent Diagrams](#reduction-of-trivalent-diagrams)<br />
-    	AdjMtx, b, d, dimC4, ReduceDiagram, ReducesSquares, t
+    	AdjMtx, b, d, dimC4, ReduceDiagram, ReduceSquares, t
     * [Operations on Diagrams](#operations-on-diagrams)<br />
     	ConnectAt, DiagramCompose, DiagramConjugate, DiagramFlipH, DiagramMoveDown, DiagramMoveUp, DiagramNorm, DiagramOrthogonalization, DiagramRotate, DiagramScalar, DiagramTensor, DiagramTrace
     * [Other Tools](#other-tools)<br />
