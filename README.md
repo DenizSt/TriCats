@@ -1,6 +1,6 @@
 # Trivalent
 
-A framework and set of tools to perform calculations with trivalent diagrams in *Mathematica*.
+A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
 
 *Written by* Deniz Stiegemann.
 
