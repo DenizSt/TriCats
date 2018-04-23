@@ -7,6 +7,7 @@ A framework and set of tools to perform calculations with trivalent diagrams in 
 ## Table of Contents
 
 * [**Installation & Setup**](#installation-setup)
+* [**List of Files in the Repository**](#list-of-files-in-the-repository)
 * [**Background**](#background)
 * [**Documentation**](#documentation)
 	* [Reduction of Trivalent Diagrams](#reduction-of-trivalent-diagrams)<br />
@@ -35,6 +36,21 @@ into the folder that also contains the notebook in which you want to use the pac
 SetDirectory[NotebookDirectory[]];
 << Trivalent`;
 ```
+
+## List of Files in the Repository
+
+The following files are sufficient for using the package:
+
+* `Trivalent.m` contains the package code.
+* `stdlib` is the standard library, which contains shortcuts for frequently-used diagrams and relations.
+
+Additionally, I added the following files:
+
+* `C4ONB.nb` is the notebook which was used to compute an orthonormal basis for C4 and the relations for the square diagram.
+* `stdlib.nb` is the notebook used to create the standard library.
+
+`C4ONB.nb` can serve as an illustration of how to do calculations with the package in practice, and `stdlib.nb` shows how library files can be created.
+
 
 ## Background
 
