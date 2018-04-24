@@ -218,7 +218,7 @@ The elements of the list `vectors` can be linear combinations of expressions wit
 
 #### Bilinearize
 
-`Linearize[f]` makes the function `f` bilinear with respect to expressions with head `AdjMtx`.
+`Bilinearize[f]` makes the function `f` bilinear with respect to expressions with head `AdjMtx`.
 
 `f` can be any function of two arguments which has already been defined for expressions with head `AdjMtx` in the following way:
 ```mathematica
@@ -227,7 +227,7 @@ f[adj1_AdjMtx, adj2_AdjMtx]:= expr
 
 #### ConjugateLinearize
 
-`Linearize[f]` makes the function `f` conjugate-linear, in its first argument, with respect to expressions with head `AdjMtx`.
+`ConjugateLinearize[f]` makes the function `f` conjugate-linear, in its first argument, with respect to expressions with head `AdjMtx`.
 
 `f` can be any function which has already been defined for expressions with head `AdjMtx` in the following way:
 ```mathematica
@@ -251,7 +251,7 @@ f[adj_AdjMtx, …]:= expr
 
 #### Sesquilinearize
 
-`Linearize[f]` makes the function `f` sesquilinear with respect to expressions with head `AdjMtx`, i.e. conjugate-linear in its first and linear in its second argument.
+`Sesquilinearize[f]` makes the function `f` sesquilinear with respect to expressions with head `AdjMtx`, i.e. conjugate-linear in its first and linear in its second argument.
 
 `f` can be any function of two arguments which has already been defined for expressions with head `AdjMtx` in the following way:
 ```mathematica
