@@ -472,7 +472,7 @@ DiagramMoveDown[adj_AdjMtx,nlegs_]:=AdjMtx[First@adj,Join[adj[[2]],Reverse@Take[
 
 DiagramMoveUp[adj_AdjMtx,nlegs_]:=AdjMtx[First@adj,Drop[adj[[2]],-nlegs],Join[adj[[3]],Reverse@Take[adj[[2]],-nlegs]]];
 
-MakeGraphs[adjs_]:=(AdjacencyGraph[#,VertexLabels->"Name"]&)@*First/@Cases[adjs,_AdjMtx,Infinity];
+MakeGraphs[adjs_]:=(AdjacencyGraph[#,VertexLabels->"Name"]&)/@Cases[{adjs},AdjMtx[x_,___]->x,Infinity];
 
 End[]
 
