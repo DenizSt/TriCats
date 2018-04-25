@@ -1,22 +1,3 @@
-(* Content-type: application/vnd.wolfram.mathematica *)
-
-(*** Wolfram Notebook File ***)
-(* http://www.wolfram.com/nb *)
-
-(* CreatedBy='Mathematica 11.2' *)
-
-(*CacheID: 234*)
-(* Internal cache information:
-NotebookFileLineBreakTest
-NotebookFileLineBreakTest
-NotebookDataPosition[       158,          7]
-NotebookDataLength[     47208,       1177]
-NotebookOptionsPosition[     46711,       1161]
-NotebookOutlinePosition[     47068,       1177]
-CellTagsIndexPosition[     47025,       1174]
-WindowFrame->Normal*)
-
-(* Beginning of Notebook Content *)
 Notebook[{
 Cell["\<\
 This notebook is used to create the standard library file stdlib whose \
@@ -845,9 +826,9 @@ with one ingoing and one outgoing leg.\>\""}], ",", "\[IndentingNewLine]",
 lollipop diagram with one leg up, which is an element of \
 \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[\"C\", \"0\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"74a619a5-\
-455f-4bd6-a0a2-80ea57ffadf2\"]],ExpressionUUID->\"6c75afbf-3300-48a9-85ad-\
-f72695a4e0c9\"]\) and evaluates to zero.\>\""}], ",", "\[IndentingNewLine]", 
+TraditionalForm]],ExpressionUUID->\"74a619a5-455f-4bd6-a0a2-80ea57ffadf2\"]],\
+ExpressionUUID->\"6c75afbf-3300-48a9-85ad-f72695a4e0c9\"]\) and evaluates to \
+zero.\>\""}], ",", "\[IndentingNewLine]", 
         RowBox[{"\"\<value\>\"", "\[Rule]", "lib`Lollipop"}]}], 
        "\[IndentingNewLine]", "|>"}]}], ",", "\[IndentingNewLine]", 
      RowBox[{"\"\<Trivalent\>\"", "\[Rule]", 
@@ -888,14 +869,13 @@ of the paper on trivalent categories.\>\""}], ",", "\[IndentingNewLine]",
 appropriate list of diagrams that form a basis of \
 \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[\"C\", \"4\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"93443149-\
-4120-4f59-b343-5885b3236a08\"]],ExpressionUUID->\"54a60b5f-5e8f-4dcf-99f1-\
-e3588a0271de\"]\) when \!\(\*Cell[TextData[Cell[BoxData[FormBox[
+TraditionalForm]],ExpressionUUID->\"93443149-4120-4f59-b343-5885b3236a08\"]],\
+ExpressionUUID->\"54a60b5f-5e8f-4dcf-99f1-e3588a0271de\"]\) when \
+\!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[\"C\", \"4\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"58ab42ee-\
-2be2-4d55-bbd5-a06bb68c798b\"]],ExpressionUUID->\"7a67b3e1-13d9-447a-b8d6-\
-ddae6dcaad43\"]\) has the dimension specified by the option dimC4.\>\""}], 
-        ",", "\[IndentingNewLine]", 
+TraditionalForm]],ExpressionUUID->\"58ab42ee-2be2-4d55-bbd5-a06bb68c798b\"]],\
+ExpressionUUID->\"7a67b3e1-13d9-447a-b8d6-ddae6dcaad43\"]\) has the dimension \
+specified by the option dimC4.\>\""}], ",", "\[IndentingNewLine]", 
         RowBox[{"\"\<attributes\>\"", "\[Rule]", 
          RowBox[{"{", "\"\<releasehold\>\"", "}"}]}], ",", 
         "\[IndentingNewLine]", 
@@ -916,9 +896,9 @@ ddae6dcaad43\"]\) has the dimension specified by the option dimC4.\>\""}],
 equation for d, b, and t that singles out \
 \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[RowBox[{\"SO\", \"(\", \"3\", \")\"}], \"q\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"c4c02b20-\
-d8f4-4ffe-a4af-d38f83c05e18\"]],ExpressionUUID->\"b3c0ce58-dafa-46ad-9f5d-\
-c8505e3db850\"]\).\>\""}], ",", "\[IndentingNewLine]", 
+TraditionalForm]],ExpressionUUID->\"c4c02b20-d8f4-4ffe-a4af-d38f83c05e18\"]],\
+ExpressionUUID->\"b3c0ce58-dafa-46ad-9f5d-c8505e3db850\"]\).\>\""}], ",", 
+        "\[IndentingNewLine]", 
         RowBox[{"\"\<value\>\"", "\[Rule]", "lib`PSO3Cond"}]}], 
        "\[IndentingNewLine]", "|>"}]}], ",", "\[IndentingNewLine]", 
      RowBox[{"\"\<RealCond\>\"", "\[Rule]", 
@@ -939,10 +919,9 @@ condition that d, b, and t are real.\>\""}], ",", "\[IndentingNewLine]",
 gives the coefficients of the square in the standard basis depending on the \
 dimension of \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[\"C\", \"4\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"f105c7b8-\
-49ae-43ac-b8b7-b2ec53cbf321\"]],ExpressionUUID->\"093018cb-2ef1-4ffa-ab02-\
-19feef2205ef\"]\) specified by the option dimC4.\>\""}], ",", 
-        "\[IndentingNewLine]", 
+TraditionalForm]],ExpressionUUID->\"f105c7b8-49ae-43ac-b8b7-b2ec53cbf321\"]],\
+ExpressionUUID->\"093018cb-2ef1-4ffa-ab02-19feef2205ef\"]\) specified by the \
+option dimC4.\>\""}], ",", "\[IndentingNewLine]", 
         RowBox[{"\"\<attributes\>\"", "\[Rule]", 
          RowBox[{"{", "\"\<releasehold\>\"", "}"}]}], ",", 
         "\[IndentingNewLine]", 
@@ -962,9 +941,9 @@ TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"f105c7b8-\
 Gram matrix for the four diagrams in \
 \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[\"C\", \"4\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"8f476aad-\
-c25b-450c-9a88-fc8d35886daa\"]],ExpressionUUID->\"27e69736-db6b-4f18-9539-\
-c6ab91c398ae\"]\) with no faces.\>\""}], ",", "\[IndentingNewLine]", 
+TraditionalForm]],ExpressionUUID->\"8f476aad-c25b-450c-9a88-fc8d35886daa\"]],\
+ExpressionUUID->\"27e69736-db6b-4f18-9539-c6ab91c398ae\"]\) with no \
+faces.\>\""}], ",", "\[IndentingNewLine]", 
         RowBox[{"\"\<value\>\"", "->", "lib`Gramian"}]}], 
        "\[IndentingNewLine]", "|>"}]}], ",", "\[IndentingNewLine]", 
      RowBox[{"\"\<C4ScalarProducts\>\"", "\[Rule]", 
@@ -977,10 +956,9 @@ diagrams with zero or one face, where the appropriate relations for the \
 square are used depending on the dimension of \
 \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[\"C\", \"4\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"1085ae62-\
-f31b-4204-bbe4-fe2b8110bd80\"]],ExpressionUUID->\"f8cab927-28f0-4b01-a241-\
-b626d45b3142\"]\) specified by the option dimC4.\>\""}], ",", 
-        "\[IndentingNewLine]", 
+TraditionalForm]],ExpressionUUID->\"1085ae62-f31b-4204-bbe4-fe2b8110bd80\"]],\
+ExpressionUUID->\"f8cab927-28f0-4b01-a241-b626d45b3142\"]\) specified by the \
+option dimC4.\>\""}], ",", "\[IndentingNewLine]", 
         RowBox[{"\"\<attributes\>\"", "\[Rule]", 
          RowBox[{"{", "\"\<releasehold\>\"", "}"}]}], ",", 
         "\[IndentingNewLine]", 
@@ -1000,16 +978,14 @@ b626d45b3142\"]\) specified by the option dimC4.\>\""}], ",",
 gives the coefficients of the orthonormal basis of \
 \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[\"C\", \"4\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"f53594e3-\
-862a-4fbe-bf5e-0010473962cf\"]],ExpressionUUID->\"c9abcdaf-6718-4b14-96e3-\
-b80f3734fcce\"]\) obtained by performing the Gram\[Dash]Schmidt algorithm on \
-the standard basis. The dimension of \
-\!\(\*Cell[TextData[Cell[BoxData[FormBox[
+TraditionalForm]],ExpressionUUID->\"f53594e3-862a-4fbe-bf5e-0010473962cf\"]],\
+ExpressionUUID->\"c9abcdaf-6718-4b14-96e3-b80f3734fcce\"]\) obtained by \
+performing the Gram\[Dash]Schmidt algorithm on the standard basis. The \
+dimension of \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[\"C\", \"4\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"e4365ab7-\
-55c4-4588-bd60-509dfea2a017\"]],ExpressionUUID->\"95176f1f-9944-4849-a7ca-\
-b485282de2b2\"]\) can be specified by the option dimC4.\>\""}], ",", 
-        "\[IndentingNewLine]", 
+TraditionalForm]],ExpressionUUID->\"e4365ab7-55c4-4588-bd60-509dfea2a017\"]],\
+ExpressionUUID->\"95176f1f-9944-4849-a7ca-b485282de2b2\"]\) can be specified \
+by the option dimC4.\>\""}], ",", "\[IndentingNewLine]", 
         RowBox[{"\"\<attributes\>\"", "\[Rule]", 
          RowBox[{"{", "\"\<releasehold\>\"", "}"}]}], ",", 
         "\[IndentingNewLine]", 
@@ -1032,16 +1008,14 @@ b485282de2b2\"]\) can be specified by the option dimC4.\>\""}], ",",
 diagrams of the orthonormal basis of \
 \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[\"C\", \"4\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"5e3aaedd-\
-a746-45ca-afa6-0c8cead95253\"]],ExpressionUUID->\"545fb42e-3b33-4810-85f7-\
-4c0c048fe8d4\"]\) obtained by performing the Gram\[Dash]Schmidt algorithm on \
-the standard basis. The dimension of \
-\!\(\*Cell[TextData[Cell[BoxData[FormBox[
+TraditionalForm]],ExpressionUUID->\"5e3aaedd-a746-45ca-afa6-0c8cead95253\"]],\
+ExpressionUUID->\"545fb42e-3b33-4810-85f7-4c0c048fe8d4\"]\) obtained by \
+performing the Gram\[Dash]Schmidt algorithm on the standard basis. The \
+dimension of \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[\"C\", \"4\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"be30be2c-\
-9dc7-4ee6-8950-d392fb35dd52\"]],ExpressionUUID->\"33c18e0f-b685-410d-b509-\
-593e4c6aa1de\"]\) can be specified by the option dimC4.\>\""}], ",", 
-        "\[IndentingNewLine]", 
+TraditionalForm]],ExpressionUUID->\"be30be2c-9dc7-4ee6-8950-d392fb35dd52\"]],\
+ExpressionUUID->\"33c18e0f-b685-410d-b509-593e4c6aa1de\"]\) can be specified \
+by the option dimC4.\>\""}], ",", "\[IndentingNewLine]", 
         RowBox[{"\"\<attributes\>\"", "\[Rule]", 
          RowBox[{"{", "\"\<releasehold\>\"", "}"}]}], ",", 
         "\[IndentingNewLine]", 
@@ -1068,10 +1042,9 @@ TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"be30be2c-\
          "\"\<\!\(\*StyleBox[\"SO3qStandardBraiding\",FontSlant->\"Italic\"]\)\
  gives the standard braiding for \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[RowBox[{\"SO\", \"(\", \"3\", \")\"}], \"q\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"2c15f729-\
-2d50-4624-b67c-c7acaab8f95f\"]],ExpressionUUID->\"97ceab3d-00e2-4870-9cf0-\
-926da77f9a82\"]\) as defined in the paper on trivalent categories.\>\""}], 
-        ",", "\[IndentingNewLine]", 
+TraditionalForm]],ExpressionUUID->\"2c15f729-2d50-4624-b67c-c7acaab8f95f\"]],\
+ExpressionUUID->\"97ceab3d-00e2-4870-9cf0-926da77f9a82\"]\) as defined in the \
+paper on trivalent categories.\>\""}], ",", "\[IndentingNewLine]", 
         RowBox[{"\"\<value\>\"", "\[Rule]", "lib`SO3qStandardBraiding"}]}], 
        "\[IndentingNewLine]", "|>"}]}], ",", "\[IndentingNewLine]", 
      RowBox[{"\"\<dqRel\>\"", "\[Rule]", 
@@ -1085,9 +1058,9 @@ relation between \
 and \!\(\*Cell[\"q\",ExpressionUUID->\"fe044384-4cc6-4fff-af05-b1a0a31fa413\"]\
 \) for \!\(\*Cell[TextData[Cell[BoxData[FormBox[
 SubscriptBox[RowBox[{\"SO\", \"(\", \"3\", \")\"}], \"q\"], \
-TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"bc940bf2-\
-13b7-447b-92d7-1c6b144aa732\"]],ExpressionUUID->\"063b64fe-d6fc-4b94-b6aa-\
-3aec819b1ff3\"]\).\>\""}], ",", "\[IndentingNewLine]", 
+TraditionalForm]],ExpressionUUID->\"bc940bf2-13b7-447b-92d7-1c6b144aa732\"]],\
+ExpressionUUID->\"063b64fe-d6fc-4b94-b6aa-3aec819b1ff3\"]\).\>\""}], ",", 
+        "\[IndentingNewLine]", 
         RowBox[{"\"\<attributes\>\"", "\[Rule]", 
          RowBox[{"{", "\"\<releasehold\>\"", "}"}]}], ",", 
         "\[IndentingNewLine]", 
@@ -1161,25 +1134,8 @@ b28fafe54369"]
 },
 WindowSize->{850, 855},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
 FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
 10, 2017)",
 StyleDefinitions->"Default.nb"
 ]
-(* End of Notebook Content *)
-
-(* Internal cache information *)
-(*CellTagsOutline
-CellTagsIndex->{}
-*)
-(*CellTagsIndex
-CellTagsIndex->{}
-*)
-(*NotebookFileOutline
-Notebook[{
-Cell[558, 20, 327, 7, 73, "Text",ExpressionUUID->"bbcb50db-7023-4f1d-a604-92d74f0053dc"],
-Cell[888, 29, 376, 10, 64, "Input",ExpressionUUID->"d806d3be-7c93-4655-920e-f6cb78754313"],
-Cell[1267, 41, 45440, 1118, 6349, "Input",ExpressionUUID->"dd73542c-c6f7-4373-9130-b28fafe54369"]
-}
-]
-*)
-
