@@ -1,7 +1,7 @@
 (* The Trivalent package by Deniz Stiegemann. *)
 BeginPackage["Trivalent`"]
 
-Unprotect[AdjMtx,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramOrthogonalization,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve];
+Unprotect[AdjMtx,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve];
 
 Retrieve::usage=
 "Retrieve[item,opts] gives the value of item in the current library.";
@@ -57,7 +57,7 @@ ParameterOptions={d->d,b->b,t->t,dimC4->4};
 ReduceOptions=Append[ParameterOptions,ReduceSquares->True];
 Options[Retrieve]=ParameterOptions;
 Set[Options@#,ReduceOptions]&/@
-{SquareCoefficients,ReduceDiagram,DiagramOrthogonalization,DiagramNorm};
+{SquareCoefficients,ReduceDiagram,DiagramNorm};
 
 library=<||>;
 Retrieve[item_,opts:OptionsPattern[]]:=Module[
@@ -438,14 +438,6 @@ DiagramScalar[adj1_,adj2_]:=DiagramTrace@DiagramCompose[DiagramConjugate@adj1,ad
 
 DiagramNorm[adj_,opts:OptionsPattern[]]:=Sqrt@ReduceDiagram[DiagramScalar[adj,adj],opts];
 
-DiagramOrthogonalization[vectors_List,opts:OptionsPattern[]]:=Module[{
-vec=vectors,
-m,n=Length@vectors
-},
-m=Table[ReduceDiagram[DiagramScalar[vec[[i]],vec[[j]]],opts],{i,1,n},{j,1,n}];
-Return@Orthogonalize[IdentityMatrix[n],#1.m.#2&];
-];
-
 DiagramMoveDown[adj_AdjMtx,nlegs_]:=AdjMtx[First@adj,Join[adj[[2]],Reverse@Take[adj[[3]],-nlegs]],Drop[adj[[3]],-nlegs]];
 
 DiagramMoveUp[adj_AdjMtx,nlegs_]:=AdjMtx[First@adj,Drop[adj[[2]],-nlegs],Join[adj[[3]],Reverse@Take[adj[[2]],-nlegs]]];
@@ -454,6 +446,6 @@ MakeGraphs[adjs_]:=(AdjacencyGraph[#,VertexLabels->"Name"]&)/@Cases[{adjs},AdjMt
 
 End[]
 
-SetAttributes[{AdjMtx,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramOrthogonalization,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve},{ReadProtected,Protected}];
+SetAttributes[{AdjMtx,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve},{ReadProtected,Protected}];
 
 EndPackage[]

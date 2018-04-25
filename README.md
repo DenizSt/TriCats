@@ -13,7 +13,7 @@ A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
 	* [Reduction of Trivalent Diagrams](#reduction-of-trivalent-diagrams)<br />
     	AdjMtx, b, d, dimC4, ReduceDiagram, ReduceSquares, t
     * [Operations on Diagrams](#operations-on-diagrams)<br />
-    	ConnectAt, DiagramCompose, DiagramConjugate, DiagramFlipH, DiagramMoveDown, DiagramMoveUp, DiagramNorm, DiagramOrthogonalization, DiagramRotate, DiagramScalar, DiagramTensor, DiagramTrace
+    	ConnectAt, DiagramCompose, DiagramConjugate, DiagramFlipH, DiagramMoveDown, DiagramMoveUp, DiagramNorm, DiagramRotate, DiagramScalar, DiagramTensor, DiagramTrace
     * [Other Tools](#other-tools)<br />
     	Bilinearize, ConjugateLinearize, Linearize, MakeGraphs, Sesquilinearize
     * [Libraries](#libraries)<br />
@@ -181,14 +181,6 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 `DiagramNorm` uses `ReduceDiagram` to compute the value of the scalar product of `adj` with itself. Options to be used by `ReduceDiagram` can be specified as options for `DiagramNorm` and are passed along.
 
 `DiagramNorm` uses `DiagramScalar` and therefore supports linear combinations of expressions with head `AdjMtx` as input.
-
-#### DiagramOrthogonalization
-
-`DiagramOrthogonalization[vectors]` takes a list `vectors` of (linear combinations of) diagrams and returns the coefficients obtained by performing the Gram–Schmidt orthonormalization algorithm.
-
-`DiagramOrthogonalization` uses `ReduceDiagram` to compute scalar products. Options to be used by `ReduceDiagram` can be specified as options for `DiagramOrthogonalization` and are passed along.
-
-The elements of the list `vectors` can be linear combinations of expressions with head `AdjMtx`.
 
 #### DiagramRotate
 
