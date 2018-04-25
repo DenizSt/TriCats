@@ -39,8 +39,12 @@ SetDirectory[NotebookDirectory[]];
 
 ## List of Files in the Repository
 
-* `Trivalent.m` contains the package code.
-* `stdlib` is the standard library, which contains shortcuts for frequently-used diagrams and relations.
+File | Description
+--- | ---
+`LICENSE` | full license statement
+`README.md` | readme and short documentation (this file)
+`stdlib` | standard library, which contains shortcuts for frequently-used diagrams and relations
+`Trivalent.m` | contains the package code
 
 
 ## Background
