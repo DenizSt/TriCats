@@ -28,7 +28,7 @@ You need *Mathematica* 11.2 or higher to run the package.
 The easiest way to get started is to copy the two files
 
 * `Trivalent.m`
-* `stdlib`
+* `stdlib.m`
 
 into the folder that also contains the notebook in which you want to use the package. You can then load the package with the following two lines:
 
