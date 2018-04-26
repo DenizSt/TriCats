@@ -251,7 +251,7 @@ Diagrams and relations often used in computations can be conveniently stored in 
 
 The *library* is a dictionary whose entries can be looked up with `Retrieve["name of item"]`. By default, the library is empty. `LoadLibrary` can be used to load the contents of a file into the library. For example, to load the standard library *stdlib*, use
 ```mathematica
-LoadLibrary["stdlib"]
+LoadLibrary["stdlib.m"]
 ```
 and to obtain the basic diagrams in C4, use
 ```mathematica
