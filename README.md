@@ -43,7 +43,7 @@ File | Description
 --- | ---
 `LICENSE` | full license statement
 `README.md` | readme and short documentation (this file)
-`stdlib` | standard library, which contains shortcuts for frequently-used diagrams and relations
+`stdlib.m` | standard library, which contains shortcuts for frequently-used diagrams and relations
 `Trivalent.m` | contains the package code
 
 
