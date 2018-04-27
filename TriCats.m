@@ -1,5 +1,5 @@
-(* The Trivalent package by Deniz Stiegemann. *)
-BeginPackage["Trivalent`"]
+(* The TriCats package by Deniz Stiegemann. *)
+BeginPackage["TriCats`"]
 
 Unprotect[AdjMtx,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve];
 

@@ -1,4 +1,4 @@
-# Trivalent
+# TriCats
 
 A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
 
@@ -27,14 +27,14 @@ You need *Mathematica* 11.2 or higher to run the package.
 
 The easiest way to get started is to copy the two files
 
-* `Trivalent.m`
+* `TriCats.m`
 * `stdlib.m`
 
 into the folder that also contains the notebook in which you want to use the package. You can then load the package with the following two lines:
 
 ```mathematica
 SetDirectory[NotebookDirectory[]];
-<< Trivalent`;
+<< TriCats`;
 ```
 
 ## List of Files in the Repository
@@ -44,7 +44,7 @@ File | Description
 `LICENSE` | full license statement
 `README.md` | readme and short documentation (this file)
 `stdlib.m` | standard library, which contains shortcuts for frequently-used diagrams and relations
-`Trivalent.m` | contains the package code
+`TriCats.m` | contains the package code
 
 
 ## Background
@@ -61,10 +61,10 @@ where trivalent categories were introduced and classified for a large variety of
 After having loaded the package, you can use
 
 ```mathematica
-?Trivalent`*
+?TriCats`*
 ```
 
-to obtain a list of all symbols and functions introduced by the **Trivalent** package, together with their usage descriptions.
+to obtain a list of all symbols and functions introduced by the **TriCats** package, together with their usage descriptions.
 
 *Please note* that the package does not yet have any exception handling, so you are always expected to enter valid arguments, and errors might not always be visible.
 
