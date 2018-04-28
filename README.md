@@ -82,12 +82,15 @@ to obtain a list of all symbols and functions introduced by the **TriCats** pack
 #### Diagram
 
 `Diagram[a,in,out]`<br />
-represents a diagram with adjacency matrix `a`, ingoing legs `in`, and outgoing legs `out`.
+represents a diagram with ßßßßcency matrix `a`, ingoing legs `in`, and outgoing legs `out`.
 
 `Diagram[a]`<br />
-represents a diagram with adjacency matrix `a` and no exernal legs. Equivalent to `Diagram[a,{},{}]`.
+represents a diagram with ßßßßcency matrix `a` and no exernal legs. Equivalent to `Diagram[a,{},{}]`.
 
-Legs are represented in the adjacency matrix by 1-valent vertices. Obsolete 2-valent vertices (i.e. 2-valent vertices that are not loops) are allowed and correctly removed by `ReduceDiagram`.
+`Diagram[g,in,out]` and `Diagram[g]`<br />
+represent diagrams with graph `g`.
+
+Legs are represented by 1-valent vertices. Obsolete 2-valent vertices (i.e. 2-valent vertices that are not loops) are allowed and correctly removed by `ReduceDiagram`.
 
 The convention for graphical representations of diagrams is that ingoing legs are located at the bottom of a diagram and outgoing legs at the top.
 
@@ -98,7 +101,7 @@ In this case, the default value is 4.
 
 #### ReduceDiagram
 
-`ReduceDiagram[adj]` simplifies the diagram `adj` by removing 2-valent vertices and applying substitution rules for loops, lollipops, bigons, triangles, and squares. If the diagram has no external legs and can be completely reduced, an expression in terms of only d, b, and t is returned. Otherwise, the simplified form of `adj` is returned.
+`ReduceDiagram[diagram]` simplifies `diagram` by removing 2-valent vertices and applying substitution rules for loops, lollipops, bigons, triangles, and squares. If the diagram has no external legs and can be completely reduced, an expression in terms of only d, b, and t is returned. Otherwise, the simplified form of `diagram` is returned.
 
 `ReduceDiagram` admits the following options:
 
@@ -129,19 +132,19 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 #### ConnectAt
 
-`ConnectAt[a1, a2, legs1, legs2]` is a low-level function that gives the adjacency matrix obtained by connecting the legs `legs1` of `a1` to the legs `legs2` of `a2`.
+`ConnectAt[a1, a2, legs1, legs2]` is a low-level function that gives the ßßßßcency matrix obtained by connecting the legs `legs1` of `a1` to the legs `legs2` of `a2`.
 
 #### DiagramCompose
 
-`DiagramCompose[adj1, adj2]` gives the diagram obtained by composing `adj1` and `adj2`.
+`DiagramCompose[diagram1, diagram2]` gives the diagram obtained by composing `diagram1` and `diagram2`.
 
-`DiagramCompose[adj1, adj2, …]` composes a finite sequence of diagrams.
+`DiagramCompose[diagram1, diagram2, …]` composes a finite sequence of diagrams.
 
 `DiagramCompose` is bilinear with respect to expressions with head `Diagram`.
 
 #### DiagramConjugate
 
-`DiagramConjugate[adj]` gives the diagram `adj` reflected horizontally by swapping ingoing with outgoing legs.
+`DiagramConjugate[diagram]` gives `diagram` reflected horizontally by swapping ingoing with outgoing legs.
 
 `DiagramConjugate` is the conjugate-linear version of `DiagramFlipH` and therefore more useful for computations.
 
@@ -149,55 +152,55 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 #### DiagramFlipH
 
-`DiagramFlipH[adj]` gives the diagram `adj` reflected horizontally by exchanging the lists of in and out vertices.
+`DiagramFlipH[diagram]` gives `diagram` reflected horizontally by exchanging the lists of in and out vertices.
 
 `DiagramConjugate` is the conjugate-linear version of `DiagramFlipH` and therefore more useful for computations.
 
 #### DiagramMoveDown
 
-`DiagramMoveDown[adj,n]` takes the `n` rightmost outgoing legs of `adj` and makes them ingoing legs in reverse order.
+`DiagramMoveDown[diagram,n]` takes the `n` rightmost outgoing legs of `diagram` and makes them ingoing legs in reverse order.
 
-`DiagramMoveDown[adj,-n]` takes the `n` leftmost outgoing legs of `adj` and makes them ingoing legs in reverse order.
+`DiagramMoveDown[diagram,-n]` takes the `n` leftmost outgoing legs of `diagram` and makes them ingoing legs in reverse order.
 
 `DiagramMoveDown` is linear with respect to expressions with head `Diagram`.
 
 #### DiagramMoveUp
 
-`DiagramMoveUp[adj,n]` takes the `n` rightmost ingoing legs of `adj` and makes them outgoing legs in reverse order.
+`DiagramMoveUp[diagram,n]` takes the `n` rightmost ingoing legs of `diagram` and makes them outgoing legs in reverse order.
 
-`DiagramMoveUp[adj,-n]` takes the `n` leftmost ingoing legs of `adj` and makes them outgoing legs in reverse order.
+`DiagramMoveUp[diagram,-n]` takes the `n` leftmost ingoing legs of `diagram` and makes them outgoing legs in reverse order.
 
 `DiagramMoveUp` is linear with respect to expressions with head `Diagram`.
 
 #### DiagramNorm
 
-`DiagramNorm[adj]` gives the norm of the diagram `adj`.
+`DiagramNorm[diagram]` gives the norm of `diagram`.
 
-`DiagramNorm` uses `ReduceDiagram` to compute the value of the scalar product of `adj` with itself. Options to be used by `ReduceDiagram` can be specified as options for `DiagramNorm` and are passed along.
+`DiagramNorm` uses `ReduceDiagram` to compute the value of the scalar product of `diagram` with itself. Options to be used by `ReduceDiagram` can be specified as options for `DiagramNorm` and are passed along.
 
 `DiagramNorm` uses `DiagramScalar` and therefore supports linear combinations of expressions with head `Diagram` as input.
 
 #### DiagramRotate
 
-`DiagramRotate[adj]` gives the diagram `adj` rotated by 180 degrees, i.e. the lists of ingoing and outgoing legs are swapped and each reversed.
+`DiagramRotate[diagram]` gives `diagram` rotated by 180 degrees, i.e. the lists of ingoing and outgoing legs are swapped and each reversed.
 
 `DiagramRotate` is linear with respect to expressions with head `Diagram`.
 
 #### DiagramScalar
 
-`DiagramScalar[adj1, adj2]` gives the scalar product of `adj1` and `adj2`.
+`DiagramScalar[diagram1, diagram2]` gives the scalar product of `diagram1` and `diagram2`.
 
 `DiagramScalar` is sesquilinear with respect to expressions with head `Diagram`, i.e. conjugate-linear in the first and linear in the second argument.
 
 #### DiagramTensor
 
-`DiagramTensor[adj1, adj2]` gives the tensor product of the diagrams `adj1` and `adj2`.
+`DiagramTensor[diagram1, diagram2]` gives the tensor product of the diagrams `diagram1` and `diagram2`.
 
 `DiagramTensor` is bilinear with respect to expressions with head `Diagram`.
 
 #### DiagramTrace
 
-`DiagramTrace[adj]` gives the trace of `adj`.
+`DiagramTrace[diagram]` gives the trace of `diagram`.
 
 `DiagramTrace` is linear with respect to expressions with head `Diagram`.
 
@@ -209,7 +212,7 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 `f` can be any function of two arguments which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[adj1_Diagram, adj2_Diagram]:= expr
+f[diagram1_Diagram, diagram2_Diagram]:= expr
 ```
 
 #### ConjugateLinearize
@@ -218,18 +221,18 @@ f[adj1_Diagram, adj2_Diagram]:= expr
 
 `f` can be any function which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[adj_Diagram, …]:= expr
+f[diagram_Diagram, …]:= expr
 ```
 `f` can have more than one argument.
 
 #### EnsureGraph
 
-`EnsureGraph[expr]` replaces adjacency matrices with graphs, if
+`EnsureGraph[expr]` replaces ßßßßcency matrices with graphs, if
 necessary, in all diagrams occuring in `expr`.
 
 #### EnsureMatrix
 
-`EnsureMatrix[expr]` replaces graphs with adjacency matrices, if
+`EnsureMatrix[expr]` replaces graphs with ßßßßcency matrices, if
 necessary, in all diagrams occuring in `expr`.
 
 #### Linearize
@@ -238,13 +241,13 @@ necessary, in all diagrams occuring in `expr`.
 
 `f` can be any function which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[adj_Diagram, …]:= expr
+f[diagram_Diagram, …]:= expr
 ```
 `f` can have more than one argument.
 
 #### MakeGraphs
 
-`MakeGraphs[expr]` gives a list of graphs for all adjacency matrices occuring in `expr`.
+`MakeGraphs[expr]` gives a list of graphs for all ßßßßcency matrices occuring in `expr`.
 
 #### Sesquilinearize
 
@@ -252,7 +255,7 @@ f[adj_Diagram, …]:= expr
 
 `f` can be any function of two arguments which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[adj1_Diagram, adj2_Diagram]:= expr
+f[diagram1_Diagram, diagram2_Diagram]:= expr
 ```
 
 ### Libraries
