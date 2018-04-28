@@ -1,7 +1,7 @@
 (* The TriCats package by Deniz Stiegemann. *)
 BeginPackage["TriCats`"]
 
-Unprotect[Diagram,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve];
+Unprotect[Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve];
 
 Retrieve::usage=
 "Retrieve[item,opts] gives the value of item in the current library.";
@@ -16,6 +16,10 @@ JoinWithLibrary::usage=
 ClearLibrary::usage=
 "ClearLibrary[] deletes all entries from the library.";
 
+EnsureGraph::usage=
+"EnsureGraph[expr] replaces adjacency matrices with graphs, if necessary, in all diagrams occuring in expr.";
+EnsureMatrix::usage=
+"EnsureMatrix[expr] replaces graphs with adjacency matrices, if necessary, in all diagrams occuring in expr.";
 
 Linearize::usage="Linearize[f] makes the function f linear, in its first argument, with respect to expressions with head Diagram. f can allow more than one argument.";
 ConjugateLinearize::usage=
@@ -75,6 +79,14 @@ LoadLibrary[file_]:=(library=Join[library,Get@file];Return[]);
 JoinWithLibrary[a_]:=(library=Join[library,a];Return[])
 AppendToLibrary[item_]:=AppendTo[library,item];
 ClearLibrary[]:=library=<||>;
+
+SetAttributes[EnsureGraph,Listable];
+EnsureGraph[expr_]:=expr/.x_Diagram:>EnsureGraph[x];
+EnsureGraph[diagram_Diagram]:=If[MatchQ[First@diagram,_List],Prepend[Rest@diagram,AdjacencyGraph@First@diagram],diagram];
+
+SetAttributes[EnsureMatrix,Listable];
+EnsureMatrix[expr_]:=expr/.x_Diagram:>EnsureGraph[x];
+EnsureMatrix[diagram_Diagram]:=If[MatchQ[First@diagram,_Graph],Prepend[Rest@diagram,AdjacencyMatrix@First@diagram],diagram];
 
 Linearize[f_]:=(
 f[x_+y_,args___]:=f[x,args]+f[y,args];
@@ -422,6 +434,6 @@ MakeGraphs[diagrams_]:=(AdjacencyGraph[#,VertexLabels->"Name"]&)/@Cases[{diagram
 
 End[]
 
-SetAttributes[{Diagram,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve},{ReadProtected,Protected}];
+SetAttributes[{Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve},{ReadProtected,Protected}];
 
 EndPackage[]

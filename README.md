@@ -15,7 +15,7 @@ A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
     * [Operations on Diagrams](#operations-on-diagrams)<br />
     	ConnectAt, DiagramCompose, DiagramConjugate, DiagramFlipH, DiagramMoveDown, DiagramMoveUp, DiagramNorm, DiagramRotate, DiagramScalar, DiagramTensor, DiagramTrace
     * [Other Tools](#other-tools)<br />
-    	Bilinearize, ConjugateLinearize, Linearize, MakeGraphs, Sesquilinearize
+    	Bilinearize, ConjugateLinearize, EnsureGraph, EnsureMatrix, Linearize, MakeGraphs, Sesquilinearize
     * [Libraries](#libraries)<br />
     	AppendToLibrary, ClearLibrary, Description, JoinWithLibrary, LoadLibrary, Retrieve
 * [**Acknowledgements**](#acknowledgements)
@@ -221,6 +221,16 @@ f[adj1_Diagram, adj2_Diagram]:= expr
 f[adj_Diagram, …]:= expr
 ```
 `f` can have more than one argument.
+
+#### EnsureGraph
+
+`EnsureGraph[expr]` replaces adjacency matrices with graphs, if
+necessary, in all diagrams occuring in `expr`.
+
+#### EnsureMatrix
+
+`EnsureMatrix[expr]` replaces graphs with adjacency matrices, if
+necessary, in all diagrams occuring in `expr`.
 
 #### Linearize
 
