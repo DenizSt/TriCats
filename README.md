@@ -111,11 +111,11 @@ In this case, the default value is 4.
 
 #### FindDiagramIsomorphisms
 
-`FindDiagramIsomorphisms[diagram1,diagram2]` finds all graph isomorphisms from `diagram1` to `diagram2` that correctly map open legs.
+`FindDiagramIsomorphisms[diagram1, diagram2]` finds all graph isomorphisms from `diagram1` to `diagram2` that correctly map open legs.
 
 #### IsomorphicDiagramQ
 
-`IsomorphicDiagramQ[diagram1,diagram2]` yields `True` if `diagram1` and `diagram2` are isomorphic, and `False` ortherwise.
+`IsomorphicDiagramQ[diagram1, diagram2]` yields `True` if `diagram1` and `diagram2` are isomorphic, and `False` ortherwise.
 
 #### MakeGraphs
 
