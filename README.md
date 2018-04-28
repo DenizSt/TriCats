@@ -81,7 +81,7 @@ to obtain a list of all symbols and functions introduced by the **TriCats** pack
 
 `expr` must be an expanded expression of the form
 ```mathematica
-c1 Diagram[…]+c2 Diagram[…]+…
+c1 Diagram[…] + c2 Diagram[…] + …
 ```
 which can be obtained by applying `Expand[expr]`.
 
