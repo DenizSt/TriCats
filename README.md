@@ -82,10 +82,10 @@ to obtain a list of all symbols and functions introduced by the **TriCats** pack
 #### Diagram
 
 `Diagram[a,in,out]`<br />
-represents a diagram with ßßßßcency matrix `a`, ingoing legs `in`, and outgoing legs `out`.
+represents a diagram with adjacency matrix `a`, ingoing legs `in`, and outgoing legs `out`.
 
 `Diagram[a]`<br />
-represents a diagram with ßßßßcency matrix `a` and no exernal legs. Equivalent to `Diagram[a,{},{}]`.
+represents a diagram with adjacency matrix `a` and no exernal legs. Equivalent to `Diagram[a,{},{}]`.
 
 `Diagram[g,in,out]` and `Diagram[g]`<br />
 represent diagrams with graph `g`.
@@ -132,7 +132,7 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 #### ConnectAt
 
-`ConnectAt[a1, a2, legs1, legs2]` is a low-level function that gives the ßßßßcency matrix obtained by connecting the legs `legs1` of `a1` to the legs `legs2` of `a2`.
+`ConnectAt[a1, a2, legs1, legs2]` is a low-level function that gives the adjacency matrix obtained by connecting the legs `legs1` of `a1` to the legs `legs2` of `a2`.
 
 #### DiagramCompose
 
@@ -227,12 +227,12 @@ f[diagram_Diagram, …]:= expr
 
 #### EnsureGraph
 
-`EnsureGraph[expr]` replaces ßßßßcency matrices with graphs, if
+`EnsureGraph[expr]` replaces adjacency matrices with graphs, if
 necessary, in all diagrams occuring in `expr`.
 
 #### EnsureMatrix
 
-`EnsureMatrix[expr]` replaces graphs with ßßßßcency matrices, if
+`EnsureMatrix[expr]` replaces graphs with adjacency matrices, if
 necessary, in all diagrams occuring in `expr`.
 
 #### Linearize
@@ -247,7 +247,7 @@ f[diagram_Diagram, …]:= expr
 
 #### MakeGraphs
 
-`MakeGraphs[expr]` gives a list of graphs for all ßßßßcency matrices occuring in `expr`.
+`MakeGraphs[expr]` gives a list of graphs for all adjacency matrices occuring in `expr`.
 
 #### Sesquilinearize
 
