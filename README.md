@@ -282,14 +282,13 @@ Diagrams and relations often used in computations can be conveniently stored in 
 
 The *library* is a dictionary whose entries can be looked up with `Retrieve["name of item"]`. By default, the library is empty. `LoadLibrary` can be used to load the contents of a file into the library. For example, to load the standard library *stdlib*, use
 ```mathematica
-LoadLibrary["stdlib.m"]
+LoadLibrary["stdlib"]
 ```
-and to obtain the basic diagrams in C4, use
+and use
 ```mathematica
 Retrieve["C4Atoms"]
 ```
-
-In practice, you will only need `LoadLibrary` and `Retrieve`.
+to obtain the basic diagrams in C4.
 
 #### ClearLibrary
 
@@ -297,19 +296,19 @@ In practice, you will only need `LoadLibrary` and `Retrieve`.
 
 #### Description
 
-`Description[item]` gives the description of item in the library.
+`Description[key]` gives the description of `key` in the library.
 
 #### LoadLibrary
 
-`LoadLibrary[file]` adds the contents of the file `file` to the library.
+`LoadLibrary[libname]` adds the contents of the file `<libname>.m` to the library.
 
-`file` must be a string.
+`libname` must be a string.
 
 #### Retrieve
 
-`Retrieve[item]` gives the value of `item` in the current library.
+`Retrieve[key]` gives the value of `item` in the current library.
 
-Options can be specified in the form `Retrieve[item,opts]` and are applied to the result of the library search. For example, in order to choose the dimension of C4 to be 2, you can use `Retrieve[item,dimC4->2]`.
+Options can be specified in the form `Retrieve[item,opts]` and are applied to the result of the library search. `dimC4` has default value 4.
 
 ## Acknowledgements
 
