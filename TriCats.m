@@ -463,7 +463,7 @@ isos=FindGraphIsomorphism[g1,g2,All];
 Return@Cases[isos,_Association?((legs1/.#)==legs2&)];
 ];
 
-IsomorhpicDiagramQ[diagram1_Diagram,diagram2_Diagram]:=FindDiagramIsomorphisms[diagram1,diagram2]!={};
+IsomorphicDiagramQ[diagram1_Diagram,diagram2_Diagram]:=FindDiagramIsomorphisms[diagram1,diagram2]!={};
 
 Components[expr_,diagrams_List]:=Module[
 {lendiagrams,e=expr,ds=diagrams,lincom,coeffs,i,j},
@@ -477,7 +477,7 @@ coeffs=ConstantArray[0,lendiagrams];
 
 Do[
 For[j=1,j<=lendiagrams,j++,
-If[IsomorhpicDiagramQ[i[[2]],diagrams[[j]]],
+If[IsomorphicDiagramQ[i[[2]],diagrams[[j]]],
 coeffs[[j]]+=i[[1]];
 Break[];
 ];(*if*)
