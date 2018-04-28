@@ -37,7 +37,6 @@ DiagramTensor::usage="DiagramTensor[diagram1, diagram2] gives the tensor product
 ConnectAt::usage="ConnectAt[a1, a2, legs1, legs2] is a low-level function and gives the adjacency matrix obtained by connecting the legs legs1 of a1 to the legs legs2 of a2.";
 DiagramCompose::usage="DiagramCompose[diagram1, diagram2] gives the diagram obtained from composing diagram1 and diagram2. DiagramCompose is bilinear.";
 DiagramTrace::usage="DiagramTrace[diagram] gives the trace of diagram. DiagramTrace is linear.";
-DiagramOrthogonalization::usage="DiagramOrthogonalization[vectors, opts] takes the list vectors of diagrams and returns the coefficients of Gram-Schmidt performed on these. Options for d, b, t, dimC4 can be specified.";
 DiagramFlipH::usage=
 "DiagramFlipH[diagram] gives the diagram diagram flipped horizontally, by exchanging the lists of in and out vertices.";
 DiagramConjugate::usage=
