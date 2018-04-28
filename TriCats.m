@@ -165,9 +165,10 @@ out=Delete[out,1];
 Return[{newin,newout}];
 ];(*module*)
 
-ReduceDiagram[diagram_Diagram,opts:OptionsPattern[]]:=Module[{
+ReduceDiagram[diagram1_Diagram,opts:OptionsPattern[]]:=Module[{
 debugcounter=0,
-a=First[diagram],(* adjacency matrix*)
+diagram,
+a,(* adjacency matrix*)
 numberoflegs,
 in,out,newin,newout,
 result,secondround=False,
@@ -183,6 +184,8 @@ triangle,triangleneighbours,othertriangleneighbour,
 square,squareneighbours,othersquarecorner,squarevertices,neighboursofsquare,sqcoeff,newa,newdiagram,
 idxlst={{1,2},{1,3},{2,3}}
 },
+diagram=EnsureMatrix@diagram1;
+a=First@diagram;
 
 (* In the first round, remove all 2-valent vertices. *)
 current=Length[a]; 
@@ -386,8 +389,8 @@ ReduceDiagram[c_*diagram_Diagram,opts:OptionsPattern[]]:=c*ReduceDiagram[diagram
 ReduceDiagram[c_*x_/;FreeQ[c,_Diagram],opts:OptionsPattern[]]:=c*ReduceDiagram[x,opts];
 ReduceDiagram[c_/;FreeQ[c,_Diagram],args___]:=c;
 
-DiagramTensor[diagram1_Diagram,diagram2_Diagram]:=Diagram@@Join[{ArrayFlatten[{{First@diagram1,0},{0,First@diagram2}}]},
-If[Length@diagram1>1,{Join[diagram1[[2]],Length[First@diagram1]+diagram2[[2]]],Join[diagram1[[3]],Length[First@diagram1]+diagram2[[3]]]},{}]];
+DiagramTensor[diagram1_Diagram,diagram2_Diagram]:=Diagram@@Join[{ArrayFlatten[{{First@#1,0},{0,First@#2}}]},
+If[Length@#1>1,{Join[#1[[2]],Length[First@#1]+#2[[2]]],Join[#1[[3]],Length[First@#1]+#2[[3]]]},{}]]&[EnsureMatrix@diagram1,EnsureMatrix@diagram2];
 DiagramTensor[diagram1_Diagram,diagram2_Diagram,diagram3__Diagram]:=DiagramTensor[diagram1,DiagramTensor[diagram2,diagram3]];
 
 ConnectAt[diagram1_List,diagram2_List,legs1_List,legs2_List]:=Module[{
@@ -405,12 +408,14 @@ result[[len1+l2[[i]],l1[[i]]]]=1;
 Return[result];
 ](*module*)
 
-DiagramCompose[diagram1_Diagram,diagram2_Diagram]:=Diagram[ConnectAt[First@diagram1,First@diagram2,diagram1[[3]],diagram2[[2]]],diagram1[[2]],Length[First@diagram1]+diagram2[[3]]];
+DiagramCompose[diagram1_Diagram,diagram2_Diagram]:=Diagram[ConnectAt[First@#1,First@#2,#1[[3]],#2[[2]]],#1[[2]],Length[First@#1]+#2[[3]]]&[EnsureMatrix@diagram1,EnsureMatrix@diagram2];
 DiagramCompose[diagram1_Diagram,diagram2_Diagram,diagram3__Diagram]:=DiagramCompose[diagram1,DiagramCompose[diagram2,diagram3]];
 
-DiagramTrace[diagram_Diagram]:=Module[{
-a=First@diagram,legs,len,i,v1,v2
+DiagramTrace[diagram1_Diagram]:=Module[{
+diagram,a,legs,len,i,v1,v2
 },
+diagram=EnsureMatrix@diagram1;
+a=First@diagram;
 (* To make life easier and speed up the program, I implement the trace manually. Again, DiagramTrace checks *nothing*. *)
 legs=Join[diagram[[2]],Reverse@diagram[[3]]];
 len=Length@legs;
