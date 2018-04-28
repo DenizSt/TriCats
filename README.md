@@ -10,12 +10,12 @@ A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
 * [**List of Files in the Repository**](#list-of-files-in-the-repository)
 * [**Background**](#background)
 * [**Documentation**](#documentation)
-	* [Reduction of Trivalent Diagrams](#reduction-of-trivalent-diagrams)<br />
-    	b, d, Diagram, dimC4, ReduceDiagram, ReduceSquares, t
+	* [Analysis of Trivalent Diagrams](#analysis-of-trivalent-diagrams)<br />
+    	b, Components, d, Diagram, dimC4, FindDiagramIsomorphisms, IsomorphicDiagramQ, MakeGraphs, ReduceDiagram, ReduceSquares, t
     * [Operations on Diagrams](#operations-on-diagrams)<br />
     	ConnectAt, DiagramCompose, DiagramConjugate, DiagramFlipH, DiagramMoveDown, DiagramMoveUp, DiagramNorm, DiagramRotate, DiagramScalar, DiagramTensor, DiagramTrace
     * [Other Tools](#other-tools)<br />
-    	Bilinearize, ConjugateLinearize, EnsureGraph, EnsureMatrix, Linearize, MakeGraphs, Sesquilinearize
+    	Bilinearize, ConjugateLinearize, EnsureGraph, EnsureMatrix, Linearize, Sesquilinearize
     * [Libraries](#libraries)<br />
     	AppendToLibrary, ClearLibrary, Description, JoinWithLibrary, LoadLibrary, Retrieve
 * [**Acknowledgements**](#acknowledgements)
@@ -69,11 +69,21 @@ to obtain a list of all symbols and functions introduced by the **TriCats** pack
 *Please note* that the package does not yet have any exception handling, so you are always expected to enter valid arguments, and errors might not always be visible.
 
 
-### Reduction of Trivalent Diagrams
+### Analysis of Trivalent Diagrams
 
 #### b
 
 `b` represents the formal bigon parameter of a trivalent category. It is also an option of functions such as `ReduceDiagram`, having the symbol `b` as its default value.
+
+#### Components
+
+`Components[expr, diagrams]` gives the coefficients that the diagrams specified in the list `diagrams` have in the linear combination `expr` of diagrams.
+
+`expr` must be an expanded expression of the form
+```mathematica
+c1 Diagram[…]+c2 Diagram[…]+…
+```
+which can be obtained by applying `Expand[expr]`.
 
 #### d
 
@@ -81,13 +91,13 @@ to obtain a list of all symbols and functions introduced by the **TriCats** pack
 
 #### Diagram
 
-`Diagram[a,in,out]`<br />
+`Diagram[a, in, out]`<br />
 represents a diagram with adjacency matrix `a`, ingoing legs `in`, and outgoing legs `out`.
 
 `Diagram[a]`<br />
 represents a diagram with adjacency matrix `a` and no exernal legs. Equivalent to `Diagram[a,{},{}]`.
 
-`Diagram[g,in,out]` and `Diagram[g]`<br />
+`Diagram[g, in, out]` and `Diagram[g]`<br />
 represent diagrams with graph `g`.
 
 Legs are represented by 1-valent vertices. Obsolete 2-valent vertices (i.e. 2-valent vertices that are not loops) are allowed and correctly removed by `ReduceDiagram`.
@@ -98,6 +108,18 @@ The convention for graphical representations of diagrams is that ingoing legs ar
 
 `dimC4` represents the dimension of C4 of a trivalent category, the linear space of diagrams with four external legs. It is an option of functions such as `ReduceDiagram`, where it is relevant for substituting squares.
 In this case, the default value is 4.
+
+#### FindDiagramIsomorphisms
+
+`FindDiagramIsomorphisms[diagram1,diagram2]` finds all graph isomorphisms from `diagram1` to `diagram2` that correctly map open legs.
+
+#### IsomorphicDiagramQ
+
+`IsomorphicDiagramQ[diagram1,diagram2]` yields `True` if `diagram1` and `diagram2` are isomorphic, and `False` ortherwise.
+
+#### MakeGraphs
+
+`MakeGraphs[expr]` gives a list of graphs for all adjacency matrices occuring in `expr`.
 
 #### ReduceDiagram
 
@@ -244,10 +266,6 @@ necessary, in all diagrams occuring in `expr`.
 f[diagram_Diagram, …]:= expr
 ```
 `f` can have more than one argument.
-
-#### MakeGraphs
-
-`MakeGraphs[expr]` gives a list of graphs for all adjacency matrices occuring in `expr`.
 
 #### Sesquilinearize
 

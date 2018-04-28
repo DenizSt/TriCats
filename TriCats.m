@@ -1,7 +1,7 @@
 (* The TriCats package by Deniz Stiegemann. *)
 BeginPackage["TriCats`"]
 
-Unprotect[Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve];
+Unprotect[Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components];
 
 Retrieve::usage=
 "Retrieve[item,opts] gives the value of item in the current library.";
@@ -54,6 +54,13 @@ DiagramMoveUp::usage="DiagramMoveUp[diagram, n] takes the n rightmost in legs of
 DiagramMoveDown::usage="DiagramMoveDown[diagram,n] takes the n rightmost out legs of diagram and makes them in legs in reverse order. DiagramMoveDown is linear.";
 MakeGraphs::usage=
 "MakeGraphs[expr] gives a list of all graphs corresponding to diagramcacency matrices occuring in expr.";
+
+FindDiagramIsomorphisms::usage=
+"FindDiagramIsomorphisms[diagram1,diagram2] finds all graph isomorphisms from diagram1 to diagram2 that correctly map open legs.";
+IsomorphicDiagramQ::usage=
+"IsomorphicDiagramQ[diagram1,diagram2] yields True if diagram1 and diagram2 are isomorphic, and False ortherwise.";
+Components::usage=
+"Components[expr,diagrams] gives the coefficients that the diagrams specified in the list diagrams have in the linear combination expr of diagrams. expr must be in expanded form and the diagrams in diagrams must be in the form obtained by EnsureGraph.";
 
 Begin["`Private`"]
 
@@ -432,8 +439,46 @@ DiagramMoveUp[diagram_Diagram,nlegs_]:=Diagram[First@diagram,Drop[diagram[[2]],-
 
 MakeGraphs[diagrams_]:=(AdjacencyGraph[#,VertexLabels->"Name"]&)/@Cases[{diagrams},Diagram[x_,___]->x,Infinity];
 
+FindDiagramIsomorphisms[diagram1_Diagram,diagram2_Diagram]:=Module[
+{d1,d2,g1,g2,in1,in2,out1,out2,legs1,legs2,isos},
+
+{d1,d2}=EnsureGraph[{diagram1,diagram2}];
+{g1,in1,out1}=List@@d1;
+{g2,in2,out2}=List@@d2;
+legs1=Join[in1,out1];
+legs2=Join[in2,out2];
+
+isos=FindGraphIsomorphism[g1,g2,All];
+Return@Cases[isos,_Association?((legs1/.#)==legs2&)];
+];
+
+IsomorhpicDiagramQ[diagram1_Diagram,diagram2_Diagram]:=FindDiagramIsomorphisms[diagram1,diagram2]!={};
+
+Components[expr_,diagrams_List]:=Module[
+{lendiagrams,e=expr,ds=diagrams,lincom,coeffs,i,j},
+
+{e,ds}=EnsureGraph[e,ds];
+
+lincom=#/.c_.*x_Diagram/;FreeQ[c,_Diagram]->{c,x}&/@If[MatchQ[e,_Plus],List@@e,List@e];
+
+lendiagrams=Length@ds;
+coeffs=ConstantArray[0,lendiagrams];
+
+Do[
+For[j=1,j<=lendiagrams,j++,
+If[IsomorhpicDiagramQ[i[[2]],diagrams[[j]]],
+coeffs[[j]]+=i[[1]];
+Break[];,
+];(*if*)
+];(*for*)
+(* here: raise error! *)
+,{i,lincom}];
+
+Return@coeffs;
+];
+
 End[]
 
-SetAttributes[{Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve},{ReadProtected,Protected}];
+SetAttributes[{Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components},{ReadProtected,Protected}];
 
 EndPackage[]
