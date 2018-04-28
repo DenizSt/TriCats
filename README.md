@@ -11,7 +11,7 @@ A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
 * [**Background**](#background)
 * [**Documentation**](#documentation)
 	* [Reduction of Trivalent Diagrams](#reduction-of-trivalent-diagrams)<br />
-    	AdjMtx, b, d, dimC4, ReduceDiagram, ReduceSquares, t
+    	b, d, Diagram, dimC4, ReduceDiagram, ReduceSquares, t
     * [Operations on Diagrams](#operations-on-diagrams)<br />
     	ConnectAt, DiagramCompose, DiagramConjugate, DiagramFlipH, DiagramMoveDown, DiagramMoveUp, DiagramNorm, DiagramRotate, DiagramScalar, DiagramTensor, DiagramTrace
     * [Other Tools](#other-tools)<br />
@@ -71,18 +71,6 @@ to obtain a list of all symbols and functions introduced by the **TriCats** pack
 
 ### Reduction of Trivalent Diagrams
 
-#### AdjMtx
-
-`AdjMtx[a,in,out]`<br />
-represents a diagram with adjacency matrix `a`, ingoing legs `in`, and outgoing legs `out`.
-
-`AdjMtx[a]`<br />
-represents a diagram with adjacency matrix `a` and no exernal legs. Equivalent to `AdjMtx[a,{},{}]`.
-
-Legs are represented in the adjacency matrix by 1-valent vertices. Obsolete 2-valent vertices (i.e. 2-valent vertices that are not loops) are allowed and correctly removed by `ReduceDiagram`.
-
-The convention for graphical representations of diagrams is that ingoing legs are located at the bottom of a diagram and outgoing legs at the top.
-
 #### b
 
 `b` represents the formal bigon parameter of a trivalent category. It is also an option of functions such as `ReduceDiagram`, having the symbol `b` as its default value.
@@ -90,6 +78,18 @@ The convention for graphical representations of diagrams is that ingoing legs ar
 #### d
 
 `d` represents the formal loop parameter of a trivalent category. It is also an option of functions such as `ReduceDiagram`, having the symbol `d` as its default value.
+
+#### Diagram
+
+`Diagram[a,in,out]`<br />
+represents a diagram with adjacency matrix `a`, ingoing legs `in`, and outgoing legs `out`.
+
+`Diagram[a]`<br />
+represents a diagram with adjacency matrix `a` and no exernal legs. Equivalent to `Diagram[a,{},{}]`.
+
+Legs are represented in the adjacency matrix by 1-valent vertices. Obsolete 2-valent vertices (i.e. 2-valent vertices that are not loops) are allowed and correctly removed by `ReduceDiagram`.
+
+The convention for graphical representations of diagrams is that ingoing legs are located at the bottom of a diagram and outgoing legs at the top.
 
 #### dimC4
 
@@ -112,7 +112,7 @@ Option | Default | Description
 
 Note that unless there is no other way of reducing a diagram, it is often helpful to set `ReduceSquares->False` in order to avoid complicated return values.
 
-`ReduceDiagram` is linear with respect to expressions with head `AdjMtx`.
+`ReduceDiagram` is linear with respect to expressions with head `Diagram`.
 
 #### ReduceSquares
 
@@ -137,7 +137,7 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 `DiagramCompose[adj1, adj2, …]` composes a finite sequence of diagrams.
 
-`DiagramCompose` is bilinear with respect to expressions with head `AdjMtx`.
+`DiagramCompose` is bilinear with respect to expressions with head `Diagram`.
 
 #### DiagramConjugate
 
@@ -145,7 +145,7 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 `DiagramConjugate` is the conjugate-linear version of `DiagramFlipH` and therefore more useful for computations.
 
-`DiagramConjugate` is conjugate-linear with respect to expressions with head `AdjMtx`.
+`DiagramConjugate` is conjugate-linear with respect to expressions with head `Diagram`.
 
 #### DiagramFlipH
 
@@ -159,7 +159,7 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 `DiagramMoveDown[adj,-n]` takes the `n` leftmost outgoing legs of `adj` and makes them ingoing legs in reverse order.
 
-`DiagramMoveDown` is linear with respect to expressions with head `AdjMtx`.
+`DiagramMoveDown` is linear with respect to expressions with head `Diagram`.
 
 #### DiagramMoveUp
 
@@ -167,7 +167,7 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 `DiagramMoveUp[adj,-n]` takes the `n` leftmost ingoing legs of `adj` and makes them outgoing legs in reverse order.
 
-`DiagramMoveUp` is linear with respect to expressions with head `AdjMtx`.
+`DiagramMoveUp` is linear with respect to expressions with head `Diagram`.
 
 #### DiagramNorm
 
@@ -175,60 +175,60 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 `DiagramNorm` uses `ReduceDiagram` to compute the value of the scalar product of `adj` with itself. Options to be used by `ReduceDiagram` can be specified as options for `DiagramNorm` and are passed along.
 
-`DiagramNorm` uses `DiagramScalar` and therefore supports linear combinations of expressions with head `AdjMtx` as input.
+`DiagramNorm` uses `DiagramScalar` and therefore supports linear combinations of expressions with head `Diagram` as input.
 
 #### DiagramRotate
 
 `DiagramRotate[adj]` gives the diagram `adj` rotated by 180 degrees, i.e. the lists of ingoing and outgoing legs are swapped and each reversed.
 
-`DiagramRotate` is linear with respect to expressions with head `AdjMtx`.
+`DiagramRotate` is linear with respect to expressions with head `Diagram`.
 
 #### DiagramScalar
 
 `DiagramScalar[adj1, adj2]` gives the scalar product of `adj1` and `adj2`.
 
-`DiagramScalar` is sesquilinear with respect to expressions with head `AdjMtx`, i.e. conjugate-linear in the first and linear in the second argument.
+`DiagramScalar` is sesquilinear with respect to expressions with head `Diagram`, i.e. conjugate-linear in the first and linear in the second argument.
 
 #### DiagramTensor
 
 `DiagramTensor[adj1, adj2]` gives the tensor product of the diagrams `adj1` and `adj2`.
 
-`DiagramTensor` is bilinear with respect to expressions with head `AdjMtx`.
+`DiagramTensor` is bilinear with respect to expressions with head `Diagram`.
 
 #### DiagramTrace
 
 `DiagramTrace[adj]` gives the trace of `adj`.
 
-`DiagramTrace` is linear with respect to expressions with head `AdjMtx`.
+`DiagramTrace` is linear with respect to expressions with head `Diagram`.
 
 ### Other Tools
 
 #### Bilinearize
 
-`Bilinearize[f]` makes the function `f` bilinear with respect to expressions with head `AdjMtx`.
+`Bilinearize[f]` makes the function `f` bilinear with respect to expressions with head `Diagram`.
 
-`f` can be any function of two arguments which has already been defined for expressions with head `AdjMtx` in the following way:
+`f` can be any function of two arguments which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[adj1_AdjMtx, adj2_AdjMtx]:= expr
+f[adj1_Diagram, adj2_Diagram]:= expr
 ```
 
 #### ConjugateLinearize
 
-`ConjugateLinearize[f]` makes the function `f` conjugate-linear, in its first argument, with respect to expressions with head `AdjMtx`.
+`ConjugateLinearize[f]` makes the function `f` conjugate-linear, in its first argument, with respect to expressions with head `Diagram`.
 
-`f` can be any function which has already been defined for expressions with head `AdjMtx` in the following way:
+`f` can be any function which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[adj_AdjMtx, …]:= expr
+f[adj_Diagram, …]:= expr
 ```
 `f` can have more than one argument.
 
 #### Linearize
 
-`Linearize[f]` makes the function `f` linear, in its first argument, with respect to expressions with head `AdjMtx`.
+`Linearize[f]` makes the function `f` linear, in its first argument, with respect to expressions with head `Diagram`.
 
-`f` can be any function which has already been defined for expressions with head `AdjMtx` in the following way:
+`f` can be any function which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[adj_AdjMtx, …]:= expr
+f[adj_Diagram, …]:= expr
 ```
 `f` can have more than one argument.
 
@@ -238,11 +238,11 @@ f[adj_AdjMtx, …]:= expr
 
 #### Sesquilinearize
 
-`Sesquilinearize[f]` makes the function `f` sesquilinear with respect to expressions with head `AdjMtx`, i.e. conjugate-linear in its first and linear in its second argument.
+`Sesquilinearize[f]` makes the function `f` sesquilinear with respect to expressions with head `Diagram`, i.e. conjugate-linear in its first and linear in its second argument.
 
-`f` can be any function of two arguments which has already been defined for expressions with head `AdjMtx` in the following way:
+`f` can be any function of two arguments which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[adj1_AdjMtx, adj2_AdjMtx]:= expr
+f[adj1_Diagram, adj2_Diagram]:= expr
 ```
 
 ### Libraries

@@ -1,7 +1,7 @@
 (* The TriCats package by Deniz Stiegemann. *)
 BeginPackage["TriCats`"]
 
-Unprotect[AdjMtx,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve];
+Unprotect[Diagram,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve];
 
 Retrieve::usage=
 "Retrieve[item,opts] gives the value of item in the current library.";
@@ -17,11 +17,11 @@ ClearLibrary::usage=
 "ClearLibrary[] deletes all entries from the library.";
 
 
-Linearize::usage="Linearize[f] makes the function f linear, in its first argument, with respect to expressions with head AdjMtx. f can allow more than one argument.";
+Linearize::usage="Linearize[f] makes the function f linear, in its first argument, with respect to expressions with head Diagram. f can allow more than one argument.";
 ConjugateLinearize::usage=
-"ConjugateLinearize[f] makes the function f linear, in its first argument, with respect to expressions with head AdjMtx. f can allow more than one argument.";
-Bilinearize::usage="Bilinearize[f] makes the function f linear, in its first argument, with respect to expressions with head AdjMtx. f can allow more than one argument.";
-Sesquilinearize::usage="Sesquilinearize[f] makes the function f linear, in its first argument, with respect to expressions with head AdjMtx. f can allow more than one argument.";
+"ConjugateLinearize[f] makes the function f linear, in its first argument, with respect to expressions with head Diagram. f can allow more than one argument.";
+Bilinearize::usage="Bilinearize[f] makes the function f linear, in its first argument, with respect to expressions with head Diagram. f can allow more than one argument.";
+Sesquilinearize::usage="Sesquilinearize[f] makes the function f linear, in its first argument, with respect to expressions with head Diagram. f can allow more than one argument.";
 
 
 d::usage="d represents the formal loop parameter of a trivalent category. It is also an option of functions such as ReduceDiagram, having the symbol d as its default value.";
@@ -29,27 +29,27 @@ b::usage="b represents the formal bigon parameter of a trivalent category. It is
 t::usage="t represents the formal triangle parameter of a trivalent category. It is also an option of functions such as ReduceDiagram, having the symbol t as its default value.";
 ReduceSquares::usage="ReduceSquare is an option for ReduceDiagram that specifies whether squares should be reduced.";
 dimC4::usage="dimC4 represents the dimension of Subscript[C, 4] of a trivalent category, the linear space of diagrams with fours external legs. It is an option of functions such as ReduceDiagram, where it is relevant for substituting squares. In this case, the default value is 4.";
-AdjMtx::usage="AdjMtx[adj,in,out] represents a diagram with adjacency matrix a, ingoing legs in, and outgoing legs out.";
-ReduceDiagram::usage="ReduceDiagram[adj, opts] reduces the diagram adj. Possbile options are d, b, t, dimC4, ReduceSquares. ReduceDiagram is linear in adj.";
+Diagram::usage="Diagram[a,in,out] represents a diagram with adjacency matrix a, ingoing legs in, and outgoing legs out.";
+ReduceDiagram::usage="ReduceDiagram[diagram, opts] reduces the diagram diagram. Possbile options are d, b, t, dimC4, ReduceSquares. ReduceDiagram is linear in diagram.";
 
 
-DiagramTensor::usage="DiagramTensor[adj1, adj2] gives the tensor product of the diagrams adj1 and adj2. DiagramTensor is bilinear.";
+DiagramTensor::usage="DiagramTensor[diagram1, diagram2] gives the tensor product of the diagrams diagram1 and diagram2. DiagramTensor is bilinear.";
 ConnectAt::usage="ConnectAt[a1, a2, legs1, legs2] is a low-level function and gives the adjacency matrix obtained by connecting the legs legs1 of a1 to the legs legs2 of a2.";
-DiagramCompose::usage="DiagramCompose[adj1, adj2] gives the diagram obtained from composing adj1 and adj2. DiagramCompose is bilinear.";
-DiagramTrace::usage="DiagramTrace[adj] gives the trace of adj. DiagramTrace is linear.";
+DiagramCompose::usage="DiagramCompose[diagram1, diagram2] gives the diagram obtained from composing diagram1 and diagram2. DiagramCompose is bilinear.";
+DiagramTrace::usage="DiagramTrace[diagram] gives the trace of diagram. DiagramTrace is linear.";
 DiagramOrthogonalization::usage="DiagramOrthogonalization[vectors, opts] takes the list vectors of diagrams and returns the coefficients of Gram-Schmidt performed on these. Options for d, b, t, dimC4 can be specified.";
 DiagramFlipH::usage=
-"DiagramFlipH[adj] gives the diagram adj flipped horizontally, by exchanging the lists of in and out vertices.";
+"DiagramFlipH[diagram] gives the diagram diagram flipped horizontally, by exchanging the lists of in and out vertices.";
 DiagramConjugate::usage=
-"DiagramConjugate[adj] gives the diagram adj flipped horizontally, by exchanging the lists of in and out vertices. DiagramConjugate is conjugate-linear.";
-DiagramRotate::usage="DiagramRotate[adj] gives the diagram adj rotated by 180 degrees, i.e. the lists for in and out legs are swapped and both reversed. DiagramRotate is linear.";
-DiagramScalar::usage="DiagramScalar[adj1, adj2] gives the scalar product of adj1 and adj2. DiagramScalar is bilinear.";
+"DiagramConjugate[diagram] gives the diagram diagram flipped horizontally, by exchanging the lists of in and out vertices. DiagramConjugate is conjugate-linear.";
+DiagramRotate::usage="DiagramRotate[diagram] gives the diagram diagram rotated by 180 degrees, i.e. the lists for in and out legs are swapped and both reversed. DiagramRotate is linear.";
+DiagramScalar::usage="DiagramScalar[diagram1, diagram2] gives the scalar product of diagram1 and diagram2. DiagramScalar is bilinear.";
 DiagramNorm::usage=
-"DiagramNorm[adj] gives the norm of the diagram adj.";
-DiagramMoveUp::usage="DiagramMoveUp[adj, n] takes the n rightmost in legs of adj and makes them out legs in reverse order. DiagramMoveUp is linear.";
-DiagramMoveDown::usage="DiagramMoveDown[adj,n] takes the n rightmost out legs of adj and makes them in legs in reverse order. DiagramMoveDown is linear.";
+"DiagramNorm[diagram] gives the norm of the diagram diagram.";
+DiagramMoveUp::usage="DiagramMoveUp[diagram, n] takes the n rightmost in legs of diagram and makes them out legs in reverse order. DiagramMoveUp is linear.";
+DiagramMoveDown::usage="DiagramMoveDown[diagram,n] takes the n rightmost out legs of diagram and makes them in legs in reverse order. DiagramMoveDown is linear.";
 MakeGraphs::usage=
-"MakeGraphs[expr] gives a list of all graphs corresponding to adjcacency matrices occuring in expr.";
+"MakeGraphs[expr] gives a list of all graphs corresponding to diagramcacency matrices occuring in expr.";
 
 Begin["`Private`"]
 
@@ -78,30 +78,30 @@ ClearLibrary[]:=library=<||>;
 
 Linearize[f_]:=(
 f[x_+y_,args___]:=f[x,args]+f[y,args];
-f[c_*adj_AdjMtx,args___]:=c*f[adj,args];
-f[c_*x_/;FreeQ[c,_AdjMtx],args___]:=c*f[x,args];
+f[c_*diagram_Diagram,args___]:=c*f[diagram,args];
+f[c_*x_/;FreeQ[c,_Diagram],args___]:=c*f[x,args];
 );
 
 ConjugateLinearize[f_]:=(
 f[x_+y_,args___]:=f[x,args]+f[y,args];
-f[c_*adj_AdjMtx,args___]:=Conjugate@c*f[adj,args];
-f[c_*x_/;FreeQ[c,_AdjMtx],args___]:=Conjugate@c*f[x,args];
+f[c_*diagram_Diagram,args___]:=Conjugate@c*f[diagram,args];
+f[c_*x_/;FreeQ[c,_Diagram],args___]:=Conjugate@c*f[x,args];
 );
 
 Bilinearize[f_]:=(
-f[c_*adj_AdjMtx,z_]:=c*f[adj,z];
-f[x_,c_*adj_AdjMtx]:=c*f[x,adj];
-f[c_*x_/;FreeQ[c,_AdjMtx],z_]:=c*f[x,z];
-f[x_,c_*z_/;FreeQ[c,_AdjMtx]]:=c*f[x,z];
+f[c_*diagram_Diagram,z_]:=c*f[diagram,z];
+f[x_,c_*diagram_Diagram]:=c*f[x,diagram];
+f[c_*x_/;FreeQ[c,_Diagram],z_]:=c*f[x,z];
+f[x_,c_*z_/;FreeQ[c,_Diagram]]:=c*f[x,z];
 f[x_+y_,z_]:=f[x,z]+f[y,z];
 f[x_,y_+z_]:=f[x,y]+f[x,z];
 );
 
 Sesquilinearize[f_]:=(
-f[c_*adj_AdjMtx,z_]:=Conjugate@c*f[adj,z];
-f[x_,c_*adj_AdjMtx]:=c*f[x,adj];
-f[c_*x_/;FreeQ[c,_AdjMtx],z_]:=Conjugate@c*f[x,z];
-f[x_,c_*z_/;FreeQ[c,_AdjMtx]]:=c*f[x,z];
+f[c_*diagram_Diagram,z_]:=Conjugate@c*f[diagram,z];
+f[x_,c_*diagram_Diagram]:=c*f[x,diagram];
+f[c_*x_/;FreeQ[c,_Diagram],z_]:=Conjugate@c*f[x,z];
+f[x_,c_*z_/;FreeQ[c,_Diagram]]:=c*f[x,z];
 f[x_+y_,z_]:=f[x,z]+f[y,z];
 f[x_,y_+z_]:=f[x,y]+f[x,z];
 );
@@ -118,31 +118,7 @@ list=Delete[list,i];
 list=Drop[list,None,{i}];
 ,{i,ReverseSort@indices}];
 
-internalC4Atoms=AdjMtx[#,{},{2,3,4,1}]&/@{({
- {0, 1, 0, 0},
- {1, 0, 0, 0},
- {0, 0, 0, 1},
- {0, 0, 1, 0}
-}),({
- {0, 0, 0, 1},
- {0, 0, 1, 0},
- {0, 1, 0, 0},
- {1, 0, 0, 0}
-}),({
- {0, 0, 0, 0, 0, 1},
- {0, 0, 0, 0, 1, 0},
- {0, 0, 0, 0, 1, 0},
- {0, 0, 0, 0, 0, 1},
- {0, 1, 1, 0, 0, 1},
- {1, 0, 0, 1, 1, 0}
-}),({
- {0, 0, 0, 0, 1, 0},
- {0, 0, 0, 0, 1, 0},
- {0, 0, 0, 0, 0, 1},
- {0, 0, 0, 0, 0, 1},
- {1, 1, 0, 0, 0, 1},
- {0, 0, 1, 1, 1, 0}
-})};
+internalC4Atoms=(Diagram[#1,{},{2,3,4,1}]&)/@{{{0,1,0,0},{1,0,0,0},{0,0,0,1},{0,0,1,0}},{{0,0,0,1},{0,0,1,0},{0,1,0,0},{1,0,0,0}},{{0,0,0,0,0,1},{0,0,0,0,1,0},{0,0,0,0,1,0},{0,0,0,0,0,1},{0,1,1,0,0,1},{1,0,0,1,1,0}},{{0,0,0,0,1,0},{0,0,0,0,1,0},{0,0,0,0,0,1},{0,0,0,0,0,1},{1,1,0,0,0,1},{0,0,1,1,1,0}}};
 
 SquareCoefficients[opts:OptionsPattern[]]:=
 Switch[OptionValue@dimC4,
@@ -170,9 +146,9 @@ out=Delete[out,1];
 Return[{newin,newout}];
 ];(*module*)
 
-ReduceDiagram[adj_AdjMtx,opts:OptionsPattern[]]:=Module[{
+ReduceDiagram[diagram_Diagram,opts:OptionsPattern[]]:=Module[{
 debugcounter=0,
-a=First[adj],(* adjacency matrix*)
+a=First[diagram],(* adjacency matrix*)
 numberoflegs,
 in,out,newin,newout,
 result,secondround=False,
@@ -185,7 +161,7 @@ selfconnected, (* whether the current vertex is connected to itself *)
 bigon,bigonneighbour,bigonloop,(* a close neighbour is one to which it is connected by 2 edges *)
 bigonneighboursotherneighbour,
 triangle,triangleneighbours,othertriangleneighbour,
-square,squareneighbours,othersquarecorner,squarevertices,neighboursofsquare,sqcoeff,newa,newadj,
+square,squareneighbours,othersquarecorner,squarevertices,neighboursofsquare,sqcoeff,newa,newdiagram,
 idxlst={{1,2},{1,3},{2,3}}
 },
 
@@ -234,7 +210,7 @@ current--;
 
 (* Begin with the last vertex, work towards the first, always considering the *last* interesting vertex. Interesting means that it is not 1-valent. 2-valent vertices do not occur since we change the graph carefully. *)
 current=Length[a];
-numberoflegs=If[Length[adj]>1,Length[adj[[2]]]+Length[adj[[3]]],0];
+numberoflegs=If[Length[diagram]>1,Length[diagram[[2]]]+Length[diagram[[3]]],0];
 
 While[True, (**** main loop ****)
 debugcounter++;
@@ -357,19 +333,19 @@ Break[];
 ];
 ,{i,squarevertices}];
 sqcoeff=SquareCoefficients[opts];
-newadj=0;
+newdiagram=0;
 For[i=1,i<=OptionValue@dimC4,i++,
 newa=ConnectAt[a,internalC4Atoms[[i,1]],
 neighboursofsquare,
 internalC4Atoms[[i,3]]];
 DeleteRowCol[newa,squarevertices];
-If[Length@adj>1,
-newadj+=sqcoeff[[i]]*Join[AdjMtx[newa],AdjMtx@@GetNewLegIndices[newa,Length@First@adj,adj[[2]],adj[[3]]]];
+If[Length@diagram>1,
+newdiagram+=sqcoeff[[i]]*Join[Diagram[newa],Diagram@@GetNewLegIndices[newa,Length@First@diagram,diagram[[2]],diagram[[3]]]];
 ,
-newadj+=sqcoeff[[i]]*AdjMtx[newa];
+newdiagram+=sqcoeff[[i]]*Diagram[newa];
 ];(*if*)
 ];
-Return[ReduceDiagram[newadj,opts]];
+Return[ReduceDiagram[newdiagram,opts]];
 ];(*if*)
 
 (* If we reach this point, then the diagram is invalid or the vertex is not part of something reducable because there are open legs. *)
@@ -377,26 +353,26 @@ current--;
 ];(*switch*)
 ];(*while*) (*********)
 
-result=AdjMtx[a];
+result=Diagram[a];
 
 (* It might happen that one calls DReduce on a diagram with distinguished in/out legs. In this case, we can easily recover the new indices. Since this won't occur in time-critical cases, we don't optimize. *)
-If[Length[adj]>1,
-result=Join[result,AdjMtx@@GetNewLegIndices[a,Length@First@adj,adj[[2]],adj[[3]]]];
+If[Length[diagram]>1,
+result=Join[result,Diagram@@GetNewLegIndices[a,Length@First@diagram,diagram[[2]],diagram[[3]]]];
 ];
 
 If[Length[a]>0,Return[OptionValue@d^dp*OptionValue@b^bp*OptionValue@t^tp*result],Return[OptionValue@d^dp*OptionValue@b^bp*OptionValue@t^tp]];
 ];(*module*)
 ReduceDiagram[x_+y_,opts:OptionsPattern[]]:=ReduceDiagram[x,opts]+ReduceDiagram[y,opts];
-ReduceDiagram[c_*adj_AdjMtx,opts:OptionsPattern[]]:=c*ReduceDiagram[adj,opts];
-ReduceDiagram[c_*x_/;FreeQ[c,_AdjMtx],opts:OptionsPattern[]]:=c*ReduceDiagram[x,opts];
-ReduceDiagram[c_/;FreeQ[c,_AdjMtx],args___]:=c;
+ReduceDiagram[c_*diagram_Diagram,opts:OptionsPattern[]]:=c*ReduceDiagram[diagram,opts];
+ReduceDiagram[c_*x_/;FreeQ[c,_Diagram],opts:OptionsPattern[]]:=c*ReduceDiagram[x,opts];
+ReduceDiagram[c_/;FreeQ[c,_Diagram],args___]:=c;
 
-DiagramTensor[adj1_AdjMtx,adj2_AdjMtx]:=AdjMtx@@Join[{ArrayFlatten[{{First@adj1,0},{0,First@adj2}}]},
-If[Length@adj1>1,{Join[adj1[[2]],Length[First@adj1]+adj2[[2]]],Join[adj1[[3]],Length[First@adj1]+adj2[[3]]]},{}]];
-DiagramTensor[adj1_AdjMtx,adj2_AdjMtx,adj3__AdjMtx]:=DiagramTensor[adj1,DiagramTensor[adj2,adj3]];
+DiagramTensor[diagram1_Diagram,diagram2_Diagram]:=Diagram@@Join[{ArrayFlatten[{{First@diagram1,0},{0,First@diagram2}}]},
+If[Length@diagram1>1,{Join[diagram1[[2]],Length[First@diagram1]+diagram2[[2]]],Join[diagram1[[3]],Length[First@diagram1]+diagram2[[3]]]},{}]];
+DiagramTensor[diagram1_Diagram,diagram2_Diagram,diagram3__Diagram]:=DiagramTensor[diagram1,DiagramTensor[diagram2,diagram3]];
 
-ConnectAt[adj1_List,adj2_List,legs1_List,legs2_List]:=Module[{
-a1=adj1,a2=adj2,l1=legs1,l2=legs2,
+ConnectAt[diagram1_List,diagram2_List,legs1_List,legs2_List]:=Module[{
+a1=diagram1,a2=diagram2,l1=legs1,l2=legs2,
 len1,result,i
 },
 (* ConnectAt checks *nothing*. The arguments need to have the appropriate format. *)
@@ -410,14 +386,14 @@ result[[len1+l2[[i]],l1[[i]]]]=1;
 Return[result];
 ](*module*)
 
-DiagramCompose[adj1_AdjMtx,adj2_AdjMtx]:=AdjMtx[ConnectAt[First@adj1,First@adj2,adj1[[3]],adj2[[2]]],adj1[[2]],Length[First@adj1]+adj2[[3]]];
-DiagramCompose[adj1_AdjMtx,adj2_AdjMtx,adj3__AdjMtx]:=DiagramCompose[adj1,DiagramCompose[adj2,adj3]];
+DiagramCompose[diagram1_Diagram,diagram2_Diagram]:=Diagram[ConnectAt[First@diagram1,First@diagram2,diagram1[[3]],diagram2[[2]]],diagram1[[2]],Length[First@diagram1]+diagram2[[3]]];
+DiagramCompose[diagram1_Diagram,diagram2_Diagram,diagram3__Diagram]:=DiagramCompose[diagram1,DiagramCompose[diagram2,diagram3]];
 
-DiagramTrace[adj_AdjMtx]:=Module[{
-a=First@adj,legs,len,i,v1,v2
+DiagramTrace[diagram_Diagram]:=Module[{
+a=First@diagram,legs,len,i,v1,v2
 },
 (* To make life easier and speed up the program, I implement the trace manually. Again, DiagramTrace checks *nothing*. *)
-legs=Join[adj[[2]],Reverse@adj[[3]]];
+legs=Join[diagram[[2]],Reverse@diagram[[3]]];
 len=Length@legs;
 For[i=1,i<=len/2,i++,
 v1=legs[[i]];
@@ -425,27 +401,27 @@ v2=legs[[len-i+1]];
 a[[v1,v2]]+=1;
 a[[v2,v1]]+=1;
 ];(*for*)
-Return[AdjMtx[a]];
+Return[Diagram[a]];
 ];
 
-DiagramRotate[adj_AdjMtx]:=AdjMtx[First@adj,Reverse@adj[[3]],Reverse@adj[[2]]];
+DiagramRotate[diagram_Diagram]:=Diagram[First@diagram,Reverse@diagram[[3]],Reverse@diagram[[2]]];
 
-DiagramFlipH[adj_AdjMtx]:=AdjMtx[First@adj,adj[[3]],adj[[2]]];
+DiagramFlipH[diagram_Diagram]:=Diagram[First@diagram,diagram[[3]],diagram[[2]]];
 
-DiagramConjugate[adj_AdjMtx]:=DiagramFlipH[adj];
+DiagramConjugate[diagram_Diagram]:=DiagramFlipH[diagram];
 
-DiagramScalar[adj1_,adj2_]:=DiagramTrace@DiagramCompose[DiagramConjugate@adj1,adj2];
+DiagramScalar[diagram1_,diagram2_]:=DiagramTrace@DiagramCompose[DiagramConjugate@diagram1,diagram2];
 
-DiagramNorm[adj_,opts:OptionsPattern[]]:=Sqrt@ReduceDiagram[DiagramScalar[adj,adj],opts];
+DiagramNorm[diagram_,opts:OptionsPattern[]]:=Sqrt@ReduceDiagram[DiagramScalar[diagram,diagram],opts];
 
-DiagramMoveDown[adj_AdjMtx,nlegs_]:=AdjMtx[First@adj,Join[adj[[2]],Reverse@Take[adj[[3]],-nlegs]],Drop[adj[[3]],-nlegs]];
+DiagramMoveDown[diagram_Diagram,nlegs_]:=Diagram[First@diagram,Join[diagram[[2]],Reverse@Take[diagram[[3]],-nlegs]],Drop[diagram[[3]],-nlegs]];
 
-DiagramMoveUp[adj_AdjMtx,nlegs_]:=AdjMtx[First@adj,Drop[adj[[2]],-nlegs],Join[adj[[3]],Reverse@Take[adj[[2]],-nlegs]]];
+DiagramMoveUp[diagram_Diagram,nlegs_]:=Diagram[First@diagram,Drop[diagram[[2]],-nlegs],Join[diagram[[3]],Reverse@Take[diagram[[2]],-nlegs]]];
 
-MakeGraphs[adjs_]:=(AdjacencyGraph[#,VertexLabels->"Name"]&)/@Cases[{adjs},AdjMtx[x_,___]->x,Infinity];
+MakeGraphs[diagrams_]:=(AdjacencyGraph[#,VertexLabels->"Name"]&)/@Cases[{diagrams},Diagram[x_,___]->x,Infinity];
 
 End[]
 
-SetAttributes[{AdjMtx,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve},{ReadProtected,Protected}];
+SetAttributes[{Diagram,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve},{ReadProtected,Protected}];
 
 EndPackage[]
