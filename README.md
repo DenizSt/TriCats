@@ -17,7 +17,7 @@ A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
     * [Other Tools](#other-tools)<br />
     	Bilinearize, ConjugateLinearize, EnsureGraph, EnsureMatrix, Linearize, Sesquilinearize
     * [Libraries](#libraries)<br />
-    	AppendToLibrary, ClearLibrary, Description, JoinWithLibrary, LoadLibrary, Retrieve
+    	ClearLibrary, Description, LoadLibrary, Retrieve
 * [**Acknowledgements**](#acknowledgements)
 * [**License**](#license)
 
@@ -291,10 +291,6 @@ Retrieve["C4Atoms"]
 
 In practice, you will only need `LoadLibrary` and `Retrieve`.
 
-#### AppendToLibrary
-
-`AppendToLibrary[r]` adds a single item to the library, given by the rule `r`.
-
 #### ClearLibrary
 
 `ClearLibrary[]` deletes all entries from the library.
@@ -302,10 +298,6 @@ In practice, you will only need `LoadLibrary` and `Retrieve`.
 #### Description
 
 `Description[item]` gives the description of item in the library.
-
-#### JoinWithLibrary
-
-`JoinWithLibrary[a]` adds the contents of the association `a` to the library.
 
 #### LoadLibrary
 

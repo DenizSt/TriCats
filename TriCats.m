@@ -1,7 +1,7 @@
 (* The TriCats package by Deniz Stiegemann. *)
 BeginPackage["TriCats`"]
 
-Unprotect[Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components];
+Unprotect[Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,ClearLibrary,Description,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components];
 
 Retrieve::usage=
 "Retrieve[item,opts] gives the value of item in the current library.";
@@ -9,10 +9,6 @@ Description::usage=
 "Description[item] gives the description of item in the library.";
 LoadLibrary::usage=
 "LoadLibrary[file] adds the contents of file to the library.";
-AppendToLibrary::usage=
-"AppendToLibrary[r] adds a single item to the library, given by the rule r.";
-JoinWithLibrary::usage=
-"JoinWithLibrary[a] adds the contents of the association a to the library.";
 ClearLibrary::usage=
 "ClearLibrary[] deletes all entries from the library.";
 
@@ -66,26 +62,37 @@ Begin["`Private`"]
 
 ParameterOptions={d->d,b->b,t->t,dimC4->4};
 ReduceOptions=Append[ParameterOptions,ReduceSquares->True];
-Options[Retrieve]=ParameterOptions;
 Set[Options@#,ReduceOptions]&/@
 {SquareCoefficients,ReduceDiagram,DiagramNorm};
 
 library=<||>;
-Retrieve[item_,opts:OptionsPattern[]]:=Module[
-{value},
-value=library[item,"value"];
-If[KeyExistsQ[library[item],"attributes"],
-If[MemberQ[library[item,"attributes"],"releasehold"],
-Return[ReleaseHold[value/.{d->OptionValue@d,b->OptionValue@b,t->OptionValue@t,dimC4->OptionValue@dimC4}]];
+
+LoadLibrary[libname_]:=(library=Join[library,Get@(libname<>".m")];);
+LoadLibrary[libnames__]:=Scan[LoadLibrary,{libnames}];
+ClearLibrary[]:=(library=<||>;);
+
+GetEntry[key_]:=Module[
+{k=key,parentlib,subkey},
+{parentlib,subkey}=If[StringContainsQ[k,":"],
+StringSplit[k,":"],
+{SelectFirst[Keys@library,KeyExistsQ[library[#],k]&],k}
 ];
+Return[library[parentlib,subkey]];
 ];
-Return[value/.{d->OptionValue@d,b->OptionValue@b,t->OptionValue@t,dimC4->OptionValue@dimC4}];
+
+GetAttributes[key_]:=If[KeyExistsQ[#,"attributes"],#["attributes"],{}]&@GetEntry[key];
+
+Retrieve[key_,opts___]:=Module[
+{k=key,entry,value},
+value=GetEntry[k]["value"];
+
+If[MemberQ[GetAttributes[key],"releasehold"],
+Return[ReleaseHold[value/.{opts}/.dimC4->4]];
 ];
-Description[item_]:=library[item,"description"];
-LoadLibrary[file_]:=(library=Join[library,Get@file];Return[]);
-JoinWithLibrary[a_]:=(library=Join[library,a];Return[])
-AppendToLibrary[item_]:=AppendTo[library,item];
-ClearLibrary[]:=library=<||>;
+Return[value/.{opts}/.dimC4->4];
+];
+
+Description[key_]:=If[KeyExistsQ[library,key],library[key,"description"],GetEntry[key]["description"]];
 
 SetAttributes[EnsureGraph,Listable];
 EnsureGraph[expr_]:=expr/.x_Diagram:>EnsureGraph[x];
@@ -473,7 +480,7 @@ Do[
 For[j=1,j<=lendiagrams,j++,
 If[IsomorhpicDiagramQ[i[[2]],diagrams[[j]]],
 coeffs[[j]]+=i[[1]];
-Break[];,
+Break[];
 ];(*if*)
 ];(*for*)
 (* here: raise error! *)
@@ -484,6 +491,6 @@ Return@coeffs;
 
 End[]
 
-SetAttributes[{Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,AppendToLibrary,ClearLibrary,Description,JoinWithLibrary,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components},{ReadProtected,Protected}];
+SetAttributes[{Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,ClearLibrary,Description,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components},{ReadProtected,Protected}];
 
 EndPackage[]
