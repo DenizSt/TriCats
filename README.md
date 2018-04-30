@@ -234,7 +234,7 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 `f` can be any function of two arguments which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[diagram1_Diagram, diagram2_Diagram]:= expr
+f[diagram1_Diagram, diagram2_Diagram] := expr
 ```
 
 #### ConjugateLinearize
@@ -243,7 +243,7 @@ f[diagram1_Diagram, diagram2_Diagram]:= expr
 
 `f` can be any function which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[diagram_Diagram, …]:= expr
+f[diagram_Diagram, …] := expr
 ```
 `f` can have more than one argument.
 
@@ -263,7 +263,7 @@ necessary, in all diagrams occuring in `expr`.
 
 `f` can be any function which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[diagram_Diagram, …]:= expr
+f[diagram_Diagram, …] := expr
 ```
 `f` can have more than one argument.
 
@@ -273,7 +273,7 @@ f[diagram_Diagram, …]:= expr
 
 `f` can be any function of two arguments which has already been defined for expressions with head `Diagram` in the following way:
 ```mathematica
-f[diagram1_Diagram, diagram2_Diagram]:= expr
+f[diagram1_Diagram, diagram2_Diagram] := expr
 ```
 
 ### Libraries
@@ -306,9 +306,9 @@ to obtain the basic diagrams in C4.
 
 #### Retrieve
 
-`Retrieve[key]` gives the value of `item` in the current library.
+`Retrieve[key]` gives the value of `key` in the current library.
 
-Options can be specified in the form `Retrieve[item,opts]` and are applied to the result of the library search. `dimC4` has default value 4.
+Options can be specified in the form `Retrieve[key, opts]` and are applied to the result of the library search. `dimC4` has default value 4.
 
 ## Acknowledgements
 
