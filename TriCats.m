@@ -152,23 +152,22 @@ Switch[OptionValue@dimC4,
 4,{(b (b^2+b t-t^2))/(b d+t+d t),(b (b^2+b t-t^2))/(b d+t+d t),(-b^2+(1+d) t^2)/(b d+t+d t),(-b^2+(1+d) t^2)/(b d+t+d t)}
 ]/.{d->OptionValue@d,b->OptionValue@b,t->OptionValue@t};
 
-GetNewLegIndices[adj_List,oldlength_,inlst_,outlst_]:=Module[{
-a=adj,i,in=inlst,out=outlst,newin={},newout={}
+GetNewLegIndices[adj_List,inlst_,outlst_]:=Module[{
+noflegs,a=adj,i,in=inlst,out=outlst,oldlegs,oldlegslist,newlegs={},counter=1,result
 },
+oldlegs=Join[in,out];
+noflegs=Length@oldlegs;
+oldlegslist=Transpose@{oldlegs,Range@noflegs};
+oldlegslist=Sort[oldlegslist,First@#1<First@#2&];
 For[i=1,i<=Length[a],i++,
 If[Plus@@a[[i]]==1&&a[[i,i]]==0,
-If[Length[in]==0,AppendTo[in,oldlength+1]];
-If[Length[out]==0,AppendTo[out,oldlength+1]];
-If[First@in<First@out,
-AppendTo[newin,i];
-in=Delete[in,1];
-,(*else:*)
-AppendTo[newout,i];
-out=Delete[out,1];
-];
+AppendTo[newlegs,i];
+counter++;
 ]; (*if*)
 ];(*for*)
-Return[{newin,newout}];
+newlegs=Sort@newlegs;
+result=Table[newlegs[[oldlegslist[[i,2]]]],{i,1,noflegs}];
+Return[TakeDrop[result,Length@in]];
 ];(*module*)
 
 ReduceDiagram[diagram1_Diagram,opts:OptionsPattern[]]:=Module[{
@@ -368,7 +367,7 @@ neighboursofsquare,
 internalC4Atoms[[i,3]]];
 DeleteRowCol[newa,squarevertices];
 If[Length@diagram>1,
-newdiagram+=sqcoeff[[i]]*Join[Diagram[newa],Diagram@@GetNewLegIndices[newa,Length@First@diagram,diagram[[2]],diagram[[3]]]];
+newdiagram+=sqcoeff[[i]]*Join[Diagram[newa],Diagram@@GetNewLegIndices[newa,diagram[[2]],diagram[[3]]]];
 ,
 newdiagram+=sqcoeff[[i]]*Diagram[newa];
 ];(*if*)
@@ -385,7 +384,7 @@ result=Diagram[a];
 
 (* It might happen that one calls DReduce on a diagram with distinguished in/out legs. In this case, we can easily recover the new indices. Since this won't occur in time-critical cases, we don't optimize. *)
 If[Length[diagram]>1,
-result=Join[result,Diagram@@GetNewLegIndices[a,Length@First@diagram,diagram[[2]],diagram[[3]]]];
+result=Join[result,Diagram@@GetNewLegIndices[a,diagram[[2]],diagram[[3]]]];
 ];
 
 If[Length[a]>0,Return[OptionValue@d^dp*OptionValue@b^bp*OptionValue@t^tp*result],Return[OptionValue@d^dp*OptionValue@b^bp*OptionValue@t^tp]];
