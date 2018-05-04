@@ -66,7 +66,7 @@ After having loaded the package, you can use
 
 to obtain a list of all symbols and functions introduced by the **TriCats** package, together with their usage descriptions.
 
-*Please note* that the package does not yet have any exception handling, so you are always expected to enter valid arguments, and errors might not always be visible.
+:warning: Please note that the package does not yet have any exception handling, so you are always expected to enter valid arguments, and errors might not always be visible.
 
 
 ### Analysis of Trivalent Diagrams
