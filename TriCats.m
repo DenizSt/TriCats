@@ -468,7 +468,7 @@ IsomorphicDiagramQ[diagram1_Diagram,diagram2_Diagram]:=FindDiagramIsomorphisms[d
 Components[expr_,diagrams_List]:=Module[
 {lendiagrams,e=expr,ds=diagrams,lincom,coeffs,i,j},
 
-{e,ds}=EnsureGraph[e,ds];
+{e,ds}=EnsureGraph[{e,ds}];
 
 lincom=#/.c_.*x_Diagram/;FreeQ[c,_Diagram]->{c,x}&/@If[MatchQ[e,_Plus],List@@e,List@e];
 
