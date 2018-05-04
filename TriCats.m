@@ -95,11 +95,11 @@ Description[key_]:=If[KeyExistsQ[library,key],library[key,"description"],GetEntr
 
 SetAttributes[EnsureGraph,Listable];
 EnsureGraph[expr_]:=expr/.x_Diagram:>EnsureGraph[x];
-EnsureGraph[diagram_Diagram]:=If[MatchQ[First@diagram,_List],Prepend[Rest@diagram,AdjacencyGraph@First@diagram],diagram];
+EnsureGraph[diagram_Diagram]:=If[MatchQ[First@diagram,_List],Prepend[Rest@diagram,AdjacencyGraph[First@diagram,VertexShapeFunction->"Name"]],diagram];
 
 SetAttributes[EnsureMatrix,Listable];
 EnsureMatrix[expr_]:=expr/.x_Diagram:>EnsureGraph[x];
-EnsureMatrix[diagram_Diagram]:=If[MatchQ[First@diagram,_Graph],Prepend[Rest@diagram,AdjacencyMatrix@First@diagram],diagram];
+EnsureMatrix[diagram_Diagram]:=If[MatchQ[First@diagram,_Graph],Prepend[Rest@diagram,Normal@AdjacencyMatrix@First@diagram],diagram];
 
 Linearize[f_]:=(
 f[x_+y_,args___]:=f[x,args]+f[y,args];
