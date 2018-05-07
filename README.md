@@ -79,12 +79,6 @@ to obtain a list of all symbols and functions introduced by the **TriCats** pack
 
 `Components[expr, diagrams]` gives the coefficients that the diagrams specified in the list `diagrams` have in the linear combination `expr` of diagrams.
 
-`expr` must be an expanded expression of the form
-```mathematica
-c1 Diagram[…] + c2 Diagram[…] + …
-```
-which can be obtained by applying `Expand[expr]`.
-
 #### d
 
 `d` represents the formal loop parameter of a trivalent category. It is also an option of functions such as `ReduceDiagram`, having the symbol `d` as its default value.
