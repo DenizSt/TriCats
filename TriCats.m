@@ -397,6 +397,7 @@ ReduceDiagram[c_/;FreeQ[c,_Diagram],args___]:=c;
 DiagramTensor[diagram1_Diagram,diagram2_Diagram]:=Diagram@@Join[{ArrayFlatten[{{First@#1,0},{0,First@#2}}]},
 If[Length@#1>1,{Join[#1[[2]],Length[First@#1]+#2[[2]]],Join[#1[[3]],Length[First@#1]+#2[[3]]]},{}]]&[EnsureMatrix@diagram1,EnsureMatrix@diagram2];
 DiagramTensor[diagram1_Diagram,diagram2_Diagram,diagram3__Diagram]:=DiagramTensor[diagram1,DiagramTensor[diagram2,diagram3]];
+DiagramTensor[diagram_Diagram]:=diagram;
 
 ConnectAt[diagram1_List,diagram2_List,legs1_List,legs2_List]:=Module[{
 a1=diagram1,a2=diagram2,l1=legs1,l2=legs2,
@@ -415,6 +416,7 @@ Return[result];
 
 DiagramCompose[diagram1_Diagram,diagram2_Diagram]:=Diagram[ConnectAt[First@#1,First@#2,#1[[3]],#2[[2]]],#1[[2]],Length[First@#1]+#2[[3]]]&[EnsureMatrix@diagram1,EnsureMatrix@diagram2];
 DiagramCompose[diagram1_Diagram,diagram2_Diagram,diagram3__Diagram]:=DiagramCompose[diagram1,DiagramCompose[diagram2,diagram3]];
+DiagramCompose[diagram_Diagram]:=diagram;
 
 DiagramTrace[diagram1_Diagram]:=Module[{
 diagram,a,legs,len,i,v1,v2
