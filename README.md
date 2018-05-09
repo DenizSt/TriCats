@@ -156,6 +156,8 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 `DiagramCompose[diagram1, diagram2, …]` composes a finite sequence of diagrams.
 
+`DiagramCompose[diagram]` gives `diagram`.
+
 `DiagramCompose` is bilinear with respect to expressions with head `Diagram`.
 
 #### DiagramConjugate
@@ -211,6 +213,10 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 #### DiagramTensor
 
 `DiagramTensor[diagram1, diagram2]` gives the tensor product of the diagrams `diagram1` and `diagram2`.
+
+`DiagramTensor[diagram1, diagram2, …]` gives the tensor product of a finite sequence of diagrams.
+
+`DiagramTensor[diagram]` gives `diagram`.
 
 `DiagramTensor` is bilinear with respect to expressions with head `Diagram`.
 
