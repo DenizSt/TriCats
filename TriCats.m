@@ -171,7 +171,6 @@ Return[TakeDrop[result,Length@in]];
 ];(*module*)
 
 ReduceDiagram[diagram1_Diagram,opts:OptionsPattern[]]:=Module[{
-debugcounter=0,
 diagram,
 a,(* adjacency matrix*)
 numberoflegs,
@@ -240,7 +239,6 @@ current=Length[a];
 numberoflegs=If[Length[diagram]>1,Length[diagram[[2]]]+Length[diagram[[3]]],0];
 
 While[True, (**** main loop ****)
-debugcounter++;
 If[current<1,
 If[Length[a]>numberoflegs&&!secondround,
 current=Length[a];
@@ -284,8 +282,6 @@ Return[0];
 
 If[bigon,
 bigonneighboursotherneighbour=First@FirstPosition[a[[bigonneighbour]],1];
-(*Print[a//MatrixForm];
-Print[current," ",bigonneighbour," ",bigonneighboursotherneighbour];*)
 a[[First@neighbours,bigonneighboursotherneighbour]]+=1;
 If[First@neighbours!=bigonneighboursotherneighbour,
 a[[bigonneighboursotherneighbour,First@neighbours]]+=1;
