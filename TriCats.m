@@ -46,16 +46,16 @@ DiagramScalar::usage="DiagramScalar[diagram1, diagram2] gives the scalar product
 DiagramNorm::usage=
 "DiagramNorm[diagram] gives the norm of the diagram diagram.";
 DiagramMoveUp::usage="DiagramMoveUp[diagram, n] takes the n rightmost in legs of diagram and makes them out legs in reverse order. DiagramMoveUp is linear.";
-DiagramMoveDown::usage="DiagramMoveDown[diagram,n] takes the n rightmost out legs of diagram and makes them in legs in reverse order. DiagramMoveDown is linear.";
+DiagramMoveDown::usage="DiagramMoveDown[diagram, n] takes the n rightmost out legs of diagram and makes them in legs in reverse order. DiagramMoveDown is linear.";
 MakeGraphs::usage=
 "MakeGraphs[expr] gives a list of all graphs corresponding to diagramcacency matrices occuring in expr.";
 
 FindDiagramIsomorphisms::usage=
-"FindDiagramIsomorphisms[diagram1,diagram2] finds all graph isomorphisms from diagram1 to diagram2 that correctly map open legs.";
+"FindDiagramIsomorphisms[diagram1, diagram2] finds all graph isomorphisms from diagram1 to diagram2 that correctly map open legs.";
 IsomorphicDiagramQ::usage=
-"IsomorphicDiagramQ[diagram1,diagram2] yields True if diagram1 and diagram2 are isomorphic, and False ortherwise.";
+"IsomorphicDiagramQ[diagram1, diagram2] yields True if diagram1 and diagram2 are isomorphic, and False ortherwise.";
 Components::usage=
-"Components[expr,diagrams] gives the coefficients that the diagrams specified in the list diagrams have in the linear combination expr of diagrams. expr must be in expanded form and the diagrams in diagrams must be in the form obtained by EnsureGraph.";
+"Components[expr,d iagrams] gives the coefficients that the diagrams specified in the list diagrams have in the linear combination expr of diagrams.";
 
 Begin["`Private`"]
 
