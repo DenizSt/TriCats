@@ -462,6 +462,7 @@ Return@Cases[isos,_Association?((legs1/.#)==legs2&)];
 
 IsomorphicDiagramQ[diagram1_Diagram,diagram2_Diagram]:=FindDiagramIsomorphisms[diagram1,diagram2]!={};
 
+Components::unidentified="Diagram `1` could not be identified.";
 Components[expr_,diagrams_List]:=Module[
 {lendiagrams,e=expr,ds=diagrams,lincom,coeffs,i,j},
 
@@ -480,7 +481,7 @@ coeffs[[j]]+=i[[1]];
 Break[];
 ];(*if*)
 ];(*for*)
-(* here: raise error! *)
+Message[Components::unidentified,i[[2]]];
 ,{i,lincom}];
 
 Return@coeffs;
