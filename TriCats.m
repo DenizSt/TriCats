@@ -306,7 +306,7 @@ If[a[[neighbours[[First@i]],neighbours[[Last@i]]]]==1,
 triangle=True;
 triangleneighbours=neighbours[[i]];
 Break[];,
-If[OptionValue@ReduceSquares,
+If[OptionValue@ReduceSquares&&secondround,
 (* look for a square: *)
 For[j=1,j<=Length[a],j++,
 If[j!=current&&a[[neighbours[[First@i]],j]]==1&&a[[neighbours[[Last@i]],j]]==1&&a[[current,j]]==0&&a[[First@i,Last@i]]==0,
