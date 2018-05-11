@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/130542639.svg)](https://zenodo.org/badge/latestdoi/130542639)
+
 # TriCats
 
 A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
