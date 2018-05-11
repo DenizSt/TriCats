@@ -464,7 +464,7 @@ IsomorphicDiagramQ[diagram1_Diagram,diagram2_Diagram]:=FindDiagramIsomorphisms[d
 
 Components::unidentified="Diagram `1` could not be identified.";
 Components[expr_,diagrams_List]:=Module[
-{lendiagrams,e=expr,ds=diagrams,lincom,coeffs,i,j},
+{lendiagrams,e=expr,ds=diagrams,lincom,coeffs,i,j,identified},
 
 {e,ds}=EnsureGraph[{e,ds}];
 e=Expand[e,_Diagram];
@@ -475,13 +475,15 @@ lendiagrams=Length@ds;
 coeffs=ConstantArray[0,lendiagrams];
 
 Do[
+identified=False;
 For[j=1,j<=lendiagrams,j++,
 If[IsomorphicDiagramQ[i[[2]],diagrams[[j]]],
+identified=True;
 coeffs[[j]]+=i[[1]];
 Break[];
 ];(*if*)
 ];(*for*)
-Message[Components::unidentified,i[[2]]];
+If[!identified,Message[Components::unidentified,i[[2]]]];
 ,{i,lincom}];
 
 Return@coeffs;
