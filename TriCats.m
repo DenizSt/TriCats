@@ -368,7 +368,7 @@ newdiagram+=sqcoeff[[i]]*Join[Diagram[newa],Diagram@@GetNewLegIndices[newa,diagr
 newdiagram+=sqcoeff[[i]]*Diagram[newa];
 ];(*if*)
 ];
-Return[ReduceDiagram[newdiagram,opts]];
+Return@ReduceDiagram[OptionValue@d^dp*OptionValue@b^bp*OptionValue@t^tp*newdiagram,opts];
 ];(*if*)
 
 (* If we reach this point, then the diagram is invalid or the vertex is not part of something reducable because there are open legs. *)
