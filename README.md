@@ -148,7 +148,9 @@ Note that unless there is no other way of reducing a diagram, it is often helpfu
 
 #### ConnectAt
 
-`ConnectAt[a1, a2, legs1, legs2]` is a low-level function that gives the adjacency matrix obtained by connecting the legs `legs1` of `a1` to the legs `legs2` of `a2`.
+`ConnectAt[a1, a2, legs1, legs2]` is a low-level function that gives the adjacency matrix obtained by connecting the legs `legs1` of matrix `a1` to the legs `legs2` of matrix `a2`.
+
+Do not use this function for composition; use `DiagramCompose` instead.
 
 #### DiagramCompose
 
