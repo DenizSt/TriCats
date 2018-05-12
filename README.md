@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/130542639.svg)](https://zenodo.org/badge/latestdoi/130542639)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.1245752-blue.svg)](https://doi.org/10.5281/zenodo.1245752)
 
 # TriCats
 
@@ -8,7 +8,7 @@ A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
 
 ## Table of Contents
 
-* [**Installation & Setup**](#installation-setup)
+* [**Installation & Setup**](#installation--setup)
 * [**List of Files in the Repository**](#list-of-files-in-the-repository)
 * [**Background**](#background)
 * [**Documentation**](#documentation)
