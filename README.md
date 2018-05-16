@@ -68,6 +68,8 @@ After having loaded the package, you can use
 
 to obtain a list of all symbols and functions introduced by the **TriCats** package, together with their usage descriptions.
 
+The DOI [10.5281/zenodo.1245752](https://doi.org/10.5281/zenodo.1245752) only links to the latest version of this package, archived at Zenodo. DOIs for specific versions are available at that link.
+
 :warning: Please note that the package does not yet have any exception handling, so you are always expected to enter valid arguments, and errors might not always be visible.
 
 
@@ -237,6 +239,7 @@ Do not use this function for composition; use `DiagramCompose` instead.
 `Bilinearize[f]` makes the function `f` bilinear with respect to expressions with head `Diagram`.
 
 `f` can be any function of two arguments which has already been defined for expressions with head `Diagram` in the following way:
+
 ```mathematica
 f[diagram1_Diagram, diagram2_Diagram] := expr
 ```
@@ -246,9 +249,11 @@ f[diagram1_Diagram, diagram2_Diagram] := expr
 `ConjugateLinearize[f]` makes the function `f` conjugate-linear, in its first argument, with respect to expressions with head `Diagram`.
 
 `f` can be any function which has already been defined for expressions with head `Diagram` in the following way:
+
 ```mathematica
 f[diagram_Diagram, …] := expr
 ```
+
 `f` can have more than one argument.
 
 #### EnsureGraph
@@ -266,9 +271,11 @@ necessary, in all diagrams occuring in `expr`.
 `Linearize[f]` makes the function `f` linear, in its first argument, with respect to expressions with head `Diagram`.
 
 `f` can be any function which has already been defined for expressions with head `Diagram` in the following way:
+
 ```mathematica
 f[diagram_Diagram, …] := expr
 ```
+
 `f` can have more than one argument.
 
 #### Sesquilinearize
@@ -276,6 +283,7 @@ f[diagram_Diagram, …] := expr
 `Sesquilinearize[f]` makes the function `f` sesquilinear with respect to expressions with head `Diagram`, i.e. conjugate-linear in its first and linear in its second argument.
 
 `f` can be any function of two arguments which has already been defined for expressions with head `Diagram` in the following way:
+
 ```mathematica
 f[diagram1_Diagram, diagram2_Diagram] := expr
 ```

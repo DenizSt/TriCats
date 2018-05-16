@@ -1,8 +1,8 @@
 <|"stdlib" -> <|"description" -> "\!\(\*StyleBox[\"stdlib\",FontSlant->\"Ital\
 ic\"]\) is the standard library for computations with trivalent diagrams. It \
-comes with the Trivalent package and contains lists of often-used diagrams \
-and relations.", "Cap" -> <|"description" -> "\!\(\*StyleBox[\"Cap\",FontSlan\
-t->\"Italic\"]\) gives the cup diagram, which corresponds to the evaluation \
+comes with the TriCats package and contains lists of often-used diagrams and \
+relations.", "Cap" -> <|"description" -> "\!\(\*StyleBox[\"Cap\",FontSlant->\
+\"Italic\"]\) gives the cup diagram, which corresponds to the evaluation \
 map.", "value" -> Diagram[{{0, 1}, {1, 0}}, {1, 2}, {}]|>, 
    "Cup" -> <|"description" -> "\!\(\*StyleBox[\"Cup\",FontSlant->\"Italic\"]\
 \) gives the cup diagram, which corresponds to the coevaluation map.", 
