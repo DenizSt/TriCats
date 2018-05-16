@@ -13,7 +13,7 @@ A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
 * [**Background**](#background)
 * [**Documentation**](#documentation)
 	* [Analysis of Trivalent Diagrams](#analysis-of-trivalent-diagrams)<br />
-    	b, Components, d, Diagram, dimC4, FindDiagramIsomorphisms, IsomorphicDiagramQ, MakeGraphs, ReduceDiagram, ReduceSquares, t
+    	b, Components, d, Diagram, dimC4, DistinctDiagrams, FindDiagramIsomorphisms, IsomorphicDiagramQ, MakeGraphs, ReduceDiagram, ReduceSquares, t
     * [Operations on Diagrams](#operations-on-diagrams)<br />
     	ConnectAt, DiagramCompose, DiagramConjugate, DiagramFlipH, DiagramMoveDown, DiagramMoveUp, DiagramNorm, DiagramRotate, DiagramScalar, DiagramTensor, DiagramTrace
     * [Other Tools](#other-tools)<br />
@@ -106,6 +106,20 @@ The convention for graphical representations of diagrams is that ingoing legs ar
 
 `dimC4` represents the dimension of C4 of a trivalent category, the linear space of diagrams with four external legs. It is an option of functions such as `ReduceDiagram`, where it is relevant for substituting squares.
 In this case, the default value is 4.
+
+#### DistinctDiagrams
+
+`DistinctDiagrams[expr]` gives a list of all distinct diagrams appearing at any level in `expr`.
+
+`DistinctDiagrams[expr, levelspec]` gives a list of all distinct diagrams found in `expr` on levels specified by `levelspec`.
+
+`DistinctDiagrams[expr]` is equivalent to `DistinctDiagrams[expr, Infinity]`.
+
+`DistinctDiagrams` is useful for finding all distinct diagrams in a complicated expression, especially when the number of external legs is large. The list returned by `DistinctDiagrams` can then be used as a second argument to `Components`, for example:
+
+```mathematica
+Components[expr, DistinctDiagrams[expr]]
+```
 
 #### FindDiagramIsomorphisms
 

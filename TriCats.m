@@ -1,7 +1,7 @@
 (* The TriCats package by Deniz Stiegemann. *)
 BeginPackage["TriCats`"]
 
-Unprotect[Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,ClearLibrary,Description,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components];
+Unprotect[Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,ClearLibrary,Description,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components,DistinctDiagrams];
 
 Retrieve::usage=
 "Retrieve[item,opts] gives the value of item in the current library.";
@@ -56,6 +56,8 @@ IsomorphicDiagramQ::usage=
 "IsomorphicDiagramQ[diagram1, diagram2] yields True if diagram1 and diagram2 are isomorphic, and False ortherwise.";
 Components::usage=
 "Components[expr,d iagrams] gives the coefficients that the diagrams specified in the list diagrams have in the linear combination expr of diagrams.";
+DistinctDiagrams::usage=
+"DistinctDiagrams[expr] gives a list of all the distinct diagrams appearing at any level in expr.";
 
 Begin["`Private`"]
 
@@ -489,8 +491,10 @@ If[!identified,Message[Components::unidentified,i[[2]]]];
 Return@coeffs;
 ];
 
+DistinctDiagrams[expr_,levelspec_:Infinity]:=DeleteDuplicates[Cases[expr,_Diagram,levelspec],IsomorphicDiagramQ];
+
 End[]
 
-SetAttributes[{Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,ClearLibrary,Description,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components},{ReadProtected,Protected}];
+SetAttributes[{Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,ClearLibrary,Description,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components,DistinctDiagrams},{ReadProtected,Protected}];
 
 EndPackage[]
