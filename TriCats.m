@@ -1,7 +1,7 @@
 (* The TriCats package by Deniz Stiegemann. *)
 BeginPackage["TriCats`"]
 
-Unprotect[Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,ClearLibrary,Description,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components,DistinctDiagrams];
+Unprotect[Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTensorPower,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,ClearLibrary,Description,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components,DistinctDiagrams];
 
 Retrieve::usage=
 "Retrieve[item,opts] gives the value of item in the current library.";
@@ -34,6 +34,8 @@ ReduceDiagram::usage="ReduceDiagram[diagram, opts] reduces the diagram diagram. 
 
 
 DiagramTensor::usage="DiagramTensor[diagram1, diagram2] gives the tensor product of the diagrams diagram1 and diagram2. DiagramTensor is bilinear.";
+DiagramTensorPower::usage=
+"DiagramTensorPower[diagram, n] gives the n-th tensor power of diagram, and the empty diagram if n is zero."
 ConnectAt::usage="ConnectAt[a1, a2, legs1, legs2] is a low-level function and gives the adjacency matrix obtained by connecting the legs legs1 of a1 to the legs legs2 of a2.";
 DiagramCompose::usage="DiagramCompose[diagram1, diagram2] gives the diagram obtained from composing diagram1 and diagram2. DiagramCompose is bilinear.";
 DiagramTrace::usage="DiagramTrace[diagram] gives the trace of diagram. DiagramTrace is linear.";
@@ -146,6 +148,8 @@ list=Drop[list,None,{i}];
 ,{i,ReverseSort@indices}];
 
 internalC4Atoms=(Diagram[#1,{},{2,3,4,1}]&)/@{{{0,1,0,0},{1,0,0,0},{0,0,0,1},{0,0,1,0}},{{0,0,0,1},{0,0,1,0},{0,1,0,0},{1,0,0,0}},{{0,0,0,0,0,1},{0,0,0,0,1,0},{0,0,0,0,1,0},{0,0,0,0,0,1},{0,1,1,0,0,1},{1,0,0,1,1,0}},{{0,0,0,0,1,0},{0,0,0,0,1,0},{0,0,0,0,0,1},{0,0,0,0,0,1},{1,1,0,0,0,1},{0,0,1,1,1,0}}};
+
+internalEmptyDiagram=Diagram[{{}}];
 
 SquareCoefficients[opts:OptionsPattern[]]:=
 Switch[OptionValue@dimC4,
@@ -397,6 +401,8 @@ If[Length@#1>1,{Join[#1[[2]],Length[First@#1]+#2[[2]]],Join[#1[[3]],Length[First
 DiagramTensor[x_,y_,z__]:=DiagramTensor[x,DiagramTensor[y,z]];
 DiagramTensor[x_]:=x;
 
+DiagramTensorPower[diagram_Diagram,n_Integer?NonNegative]:=If[n>0,DiagramTensor@@ConstantArray[diagram,n],internalEmptyDiagram];
+
 ConnectAt[diagram1_List,diagram2_List,legs1_List,legs2_List]:=Module[{
 a1=diagram1,a2=diagram2,l1=legs1,l2=legs2,
 len1,result,i
@@ -495,6 +501,6 @@ DistinctDiagrams[expr_,levelspec_:Infinity]:=DeleteDuplicates[Cases[expr,_Diagra
 
 End[]
 
-SetAttributes[{Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,ClearLibrary,Description,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components,DistinctDiagrams},{ReadProtected,Protected}];
+SetAttributes[{Diagram,EnsureGraph,EnsureMatrix,b,d,dimC4,ReduceDiagram,ReduceSquares,t,ConnectAt,DiagramCompose,DiagramConjugate,DiagramFlipH,DiagramMoveDown,DiagramMoveUp,DiagramNorm,DiagramRotate,DiagramScalar,DiagramTensor,DiagramTensorPower,DiagramTrace,Bilinearize,ConjugateLinearize,Linearize,MakeGraphs,Sesquilinearize,ClearLibrary,Description,LoadLibrary,Retrieve,FindDiagramIsomorphisms,IsomorphicDiagramQ,Components,DistinctDiagrams},{ReadProtected,Protected}];
 
 EndPackage[]

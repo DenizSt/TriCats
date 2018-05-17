@@ -15,7 +15,7 @@ A set of tools to perform calculations with trivalent diagrams in *Mathematica*.
 	* [Analysis of Trivalent Diagrams](#analysis-of-trivalent-diagrams)<br />
     	b, Components, d, Diagram, dimC4, DistinctDiagrams, FindDiagramIsomorphisms, IsomorphicDiagramQ, MakeGraphs, ReduceDiagram, ReduceSquares, t
     * [Operations on Diagrams](#operations-on-diagrams)<br />
-    	ConnectAt, DiagramCompose, DiagramConjugate, DiagramFlipH, DiagramMoveDown, DiagramMoveUp, DiagramNorm, DiagramRotate, DiagramScalar, DiagramTensor, DiagramTrace
+    	ConnectAt, DiagramCompose, DiagramConjugate, DiagramFlipH, DiagramMoveDown, DiagramMoveUp, DiagramNorm, DiagramRotate, DiagramScalar, DiagramTensor, DiagramTensorPower, DiagramTrace
     * [Other Tools](#other-tools)<br />
     	Bilinearize, ConjugateLinearize, EnsureGraph, EnsureMatrix, Linearize, Sesquilinearize
     * [Libraries](#libraries)<br />
@@ -239,6 +239,12 @@ Do not use this function for composition; use `DiagramCompose` instead.
 `DiagramTensor[diagram]` gives `diagram`.
 
 `DiagramTensor` is bilinear with respect to expressions with head `Diagram`.
+
+#### DiagramTensorPower
+
+`DiagramTensorPower[diagram, n]` gives the n-th tensor power of `diagram`, and the empty diagram if `n` is zero.
+
+`n` must be a non-negative integer.
 
 #### DiagramTrace
 
