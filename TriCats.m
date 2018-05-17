@@ -402,15 +402,15 @@ ReduceDiagram[c_*x_/;FreeQ[c,_Diagram],opts:OptionsPattern[]]:=c*ReduceDiagram[x
 ReduceDiagram[c_/;FreeQ[c,_Diagram],args___]:=c;
 
 DiagramTensor[diagram1_Diagram,diagram2_Diagram]:=Module[
-{d1=EnsureMatrix@diagram1,d2=EnsureMatrix@diagram2,legs1,legs2,len1in,len1out,newa},
+{d1=EnsureMatrix@diagram1,d2=EnsureMatrix@diagram2,legs1,legs2,newa},
 legs1=If[Length@d1>1,List@@d1[[2;;3]],{{},{}}];
 legs2=If[Length@d2>1,List@@d2[[2;;3]],{{},{}}];
-{len1in,len1out}=Length/@legs1;
 newa=ArrayFlatten[{{First@d1,0},{0,First@d2}}];
-If[len1in==len1out==0&&legs2=={{},{}},
+If[legs1==legs2=={{},{}},
 Return[Diagram[newa]];
 ,
-Return[Diagram[newa,Join[legs1[[1]],len1in+legs2[[1]]],Join[legs1[[2]],len1out+legs2[[2]]]]];
+legs2+=Length@First@d1;
+Return[Diagram[newa,Join[legs1[[1]],legs2[[1]]],Join[legs1[[2]],legs2[[2]]]]];
 ];
 ];
 DiagramTensor[x_,y_,z__]:=DiagramTensor[x,DiagramTensor[y,z]];
@@ -418,8 +418,8 @@ DiagramTensor[x_]:=x;
 
 DiagramTensorPower[diagram_Diagram,n_Integer?NonNegative]:=If[n>0,DiagramTensor@@ConstantArray[diagram,n],internalEmptyDiagram];
 
-ConnectAt[diagram1_List,diagram2_List,legs1_List,legs2_List]:=Module[{
-a1=diagram1,a2=diagram2,l1=legs1,l2=legs2,
+ConnectAt[matrix1_List,matrix2_List,legs1_List,legs2_List]:=Module[{
+a1=matrix1,a2=matrix2,l1=legs1,l2=legs2,
 len1,result,i
 },
 (* ConnectAt checks *nothing*. The arguments need to have the appropriate format. *)
@@ -434,14 +434,14 @@ Return[result];
 ](*module*)
 
 DiagramCompose[diagram1_Diagram,diagram2_Diagram]:=Module[
-{d1=EnsureMatrix@diagram1,d2=EnsureMatrix@diagram2,legs1,legs2,len1in,len1out,newa},
+{d1=EnsureMatrix@diagram1,d2=EnsureMatrix@diagram2,legs1,legs2,newa},
 legs1=If[Length@d1>1,List@@d1[[2;;3]],{{},{}}];
-legs2=If[Length@d1>1,List@@d1[[2;;3]],{{},{}}];
-newa=ConnectAt[First@d1,First@d2,legs1[[2]],legs1[[1]]];
+legs2=If[Length@d2>1,List@@d2[[2;;3]],{{},{}}];
+newa=ConnectAt[First@d1,First@d2,legs1[[2]],legs2[[1]]];
 If[Length@legs1[[1]]==Length@legs2[[2]]==0,
 Return[Diagram[newa]];
 ,
-Return[Diagram[newa,legs1[[1]],legs2[[2]]]];
+Return[Diagram[newa,legs1[[1]],Length@First@d1+legs2[[2]]]];
 ];
 ];
 DiagramCompose[x_,y_,z__]:=DiagramCompose[x,DiagramCompose[y,z]];
