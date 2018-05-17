@@ -149,7 +149,7 @@ list=Drop[list,None,{i}];
 
 internalC4Atoms=(Diagram[#1,{},{2,3,4,1}]&)/@{{{0,1,0,0},{1,0,0,0},{0,0,0,1},{0,0,1,0}},{{0,0,0,1},{0,0,1,0},{0,1,0,0},{1,0,0,0}},{{0,0,0,0,0,1},{0,0,0,0,1,0},{0,0,0,0,1,0},{0,0,0,0,0,1},{0,1,1,0,0,1},{1,0,0,1,1,0}},{{0,0,0,0,1,0},{0,0,0,0,1,0},{0,0,0,0,0,1},{0,0,0,0,0,1},{1,1,0,0,0,1},{0,0,1,1,1,0}}};
 
-internalEmptyDiagram=Diagram[{{}}];
+internalEmptyDiagram=Diagram[{{0}}];
 
 SquareCoefficients[opts:OptionsPattern[]]:=
 Switch[OptionValue@dimC4,
@@ -214,6 +214,11 @@ Switch[noe,
 	AppendTo[neighbours,i];
 ];(*switch*)
 ];(*for*)
+If[degree==0,
+DeleteRowCol[a,{current}];
+current--;
+Continue[];
+];
 If[selfconnected,degree++];
 If[degree==2,
 If[selfconnected,
@@ -396,8 +401,18 @@ ReduceDiagram[c_*diagram_Diagram,opts:OptionsPattern[]]:=c*ReduceDiagram[diagram
 ReduceDiagram[c_*x_/;FreeQ[c,_Diagram],opts:OptionsPattern[]]:=c*ReduceDiagram[x,opts];
 ReduceDiagram[c_/;FreeQ[c,_Diagram],args___]:=c;
 
-DiagramTensor[diagram1_Diagram,diagram2_Diagram]:=Diagram@@Join[{ArrayFlatten[{{First@#1,0},{0,First@#2}}]},
-If[Length@#1>1,{Join[#1[[2]],Length[First@#1]+#2[[2]]],Join[#1[[3]],Length[First@#1]+#2[[3]]]},{}]]&[EnsureMatrix@diagram1,EnsureMatrix@diagram2];
+DiagramTensor[diagram1_Diagram,diagram2_Diagram]:=Module[
+{d1=EnsureMatrix@diagram1,d2=EnsureMatrix@diagram2,legs1,legs2,len1in,len1out,newa},
+legs1=If[Length@d1>1,List@@d1[[2;;3]],{{},{}}];
+legs2=If[Length@d2>1,List@@d2[[2;;3]],{{},{}}];
+{len1in,len1out}=Length/@legs1;
+newa=ArrayFlatten[{{First@d1,0},{0,First@d2}}];
+If[len1in==len1out==0&&legs2=={{},{}},
+Return[Diagram[newa]];
+,
+Return[Diagram[newa,Join[legs1[[1]],len1in+legs2[[1]]],Join[legs1[[2]],len1out+legs2[[2]]]]];
+];
+];
 DiagramTensor[x_,y_,z__]:=DiagramTensor[x,DiagramTensor[y,z]];
 DiagramTensor[x_]:=x;
 
@@ -418,7 +433,17 @@ result[[len1+l2[[i]],l1[[i]]]]=1;
 Return[result];
 ](*module*)
 
-DiagramCompose[diagram1_Diagram,diagram2_Diagram]:=Diagram[ConnectAt[First@#1,First@#2,#1[[3]],#2[[2]]],#1[[2]],Length[First@#1]+#2[[3]]]&[EnsureMatrix@diagram1,EnsureMatrix@diagram2];
+DiagramCompose[diagram1_Diagram,diagram2_Diagram]:=Module[
+{d1=EnsureMatrix@diagram1,d2=EnsureMatrix@diagram2,legs1,legs2,len1in,len1out,newa},
+legs1=If[Length@d1>1,List@@d1[[2;;3]],{{},{}}];
+legs2=If[Length@d1>1,List@@d1[[2;;3]],{{},{}}];
+newa=ConnectAt[First@d1,First@d2,legs1[[2]],legs1[[1]]];
+If[Length@legs1[[1]]==Length@legs2[[2]]==0,
+Return[Diagram[newa]];
+,
+Return[Diagram[newa,legs1[[1]],legs2[[2]]]];
+];
+];
 DiagramCompose[x_,y_,z__]:=DiagramCompose[x,DiagramCompose[y,z]];
 DiagramCompose[x_]:=x;
 
