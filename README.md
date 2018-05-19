@@ -100,6 +100,8 @@ represent diagrams with graph `g`.
 
 Legs are represented by 1-valent vertices. Obsolete 2-valent vertices (i.e. 2-valent vertices that are not loops) are allowed and correctly removed by `ReduceDiagram`.
 
+Vertices with degree 0 are also allowed. The empty diagram is thus represented by `Diagram[{{0}}]`.
+
 The convention for graphical representations of diagrams is that ingoing legs are located at the bottom of a diagram and outgoing legs at the top.
 
 #### dimC4
