@@ -499,12 +499,14 @@ Components::unidentified="Diagram `1` could not be identified.";
 Components[expr_,diagrams_List]:=Module[
 {lendiagrams,e=expr,ds=diagrams,lincom,coeffs,i,j,identified},
 
+lendiagrams=Length@ds;
+If[e==0,Return@ConstantArray[0,lendiagrams]];
+
 {e,ds}=EnsureGraph[{e,ds}];
 e=Expand[e,_Diagram];
 
 lincom=#/.c_.*x_Diagram/;FreeQ[c,_Diagram]->{c,x}&/@If[MatchQ[e,_Plus],List@@e,List@e];
 
-lendiagrams=Length@ds;
 coeffs=ConstantArray[0,lendiagrams];
 
 Do[
