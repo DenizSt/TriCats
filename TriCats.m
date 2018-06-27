@@ -389,7 +389,7 @@ current--;
 
 result=Diagram[a];
 
-(* It might happen that one calls DReduce on a diagram with distinguished in/out legs. In this case, we can easily recover the new indices. Since this won't occur in time-critical cases, we don't optimize. *)
+(* It might happen that one calls ReduceDiagram on a diagram with distinguished in/out legs. In this case, we can easily recover the new indices. Since this won't occur in time-critical cases, we don't optimize. *)
 If[Length[diagram]>1,
 result=Join[result,Diagram@@GetNewLegIndices[a,diagram[[2]],diagram[[3]]]];
 ];
