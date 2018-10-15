@@ -241,7 +241,7 @@ Switch[Length[neighbours],
 	Continue[];
 ];
 
-];(*while*)
+];(*if*)
 current--;
 ];(*while*)
 
@@ -320,7 +320,7 @@ Break[];,
 If[OptionValue@ReduceSquares&&secondround,
 (* look for a square: *)
 For[j=1,j<=Length[a],j++,
-If[j!=current&&a[[neighbours[[First@i]],j]]==1&&a[[neighbours[[Last@i]],j]]==1&&a[[current,j]]==0&&a[[First@i,Last@i]]==0,
+If[j!=current&&a[[neighbours[[First@i]],j]]==1&&a[[neighbours[[Last@i]],j]]==1&&a[[current,j]]==0&&a[[neighbours[[First@i]],neighbours[[Last@i]]]]==0,
 square=True;
 squareneighbours=neighbours[[i]];
 othersquarecorner=j;
